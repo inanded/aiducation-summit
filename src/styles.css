@@ -1,0 +1,354 @@
+/* ===== Custom Properties ===== */
+:root {
+  --c-bg: #ffffff;
+  --c-surface: #f5f6f8;
+  --c-text: #1a1a2e;
+  --c-text-secondary: #555;
+  --c-border: #e0e0e0;
+  --c-strategy: #1B5E8C;
+  --c-creativity: #D96C2B;
+  --c-pedagogy: #1A8A6E;
+  --c-safeguarding: #7B3FA0;
+  --c-banner-bg: #eef2f7;
+  --c-tab-active: #1B5E8C;
+  --c-now-pulse: #e74c3c;
+  --shadow: 0 1px 3px rgba(0,0,0,.08);
+  --radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: #121220;
+    --c-surface: #1e1e32;
+    --c-text: #e8e8f0;
+    --c-text-secondary: #aaa;
+    --c-border: #2a2a40;
+    --c-banner-bg: #1a1a30;
+    --c-tab-active: #5ba3d9;
+    --shadow: 0 1px 4px rgba(0,0,0,.3);
+  }
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--c-bg);
+  color: var(--c-text);
+  line-height: 1.5;
+  min-height: 100dvh;
+}
+
+img { max-width: 100%; display: block; }
+a { color: var(--c-tab-active); text-decoration: none; }
+
+/* ===== Header ===== */
+.site-header {
+  text-align: center;
+  padding: 1.25rem 1rem .75rem;
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.site-header .logo { height: 48px; margin: 0 auto .5rem; }
+.site-header h1 { font-size: 1.15rem; font-weight: 700; }
+.site-header .date { font-size: .85rem; color: var(--c-text-secondary); margin-top: .15rem; }
+
+/* ===== Tab Bar ===== */
+.tab-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  background: var(--c-surface);
+  border-bottom: 2px solid var(--c-border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tab-bar button {
+  flex: 1;
+  min-width: 0;
+  padding: .75rem .5rem;
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 600;
+  border: none;
+  background: none;
+  color: var(--c-text-secondary);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color .2s, border-color .2s;
+  min-height: 44px;
+}
+
+.tab-bar button.active {
+  color: var(--c-tab-active);
+  border-bottom-color: var(--c-tab-active);
+}
+
+/* ===== Sections ===== */
+.section { display: none; padding: .75rem; max-width: 900px; margin: 0 auto; }
+.section.active { display: block; }
+
+/* ===== Schedule ===== */
+.time-slot-header {
+  position: sticky;
+  top: 47px;
+  z-index: 50;
+  background: var(--c-tab-active);
+  color: #fff;
+  padding: .5rem .75rem;
+  font-weight: 700;
+  font-size: .95rem;
+  border-radius: var(--radius);
+  margin: .75rem 0 .5rem;
+}
+
+.time-slot-header.now-active {
+  animation: pulse-now 2s ease-in-out infinite;
+}
+
+@keyframes pulse-now {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, .5); }
+  50% { box-shadow: 0 0 0 8px rgba(231, 76, 60, 0); }
+}
+
+.now-badge {
+  display: inline-block;
+  background: var(--c-now-pulse);
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 700;
+  padding: .1rem .45rem;
+  border-radius: 20px;
+  margin-left: .5rem;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.banner {
+  background: var(--c-banner-bg);
+  padding: .65rem .75rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: .9rem;
+  color: var(--c-text-secondary);
+  margin-bottom: .5rem;
+}
+
+.session-card {
+  background: var(--c-surface);
+  border-radius: var(--radius);
+  margin-bottom: .5rem;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--c-border);
+  overflow: hidden;
+}
+
+.session-card[data-track="strategy"] { border-left-color: var(--c-strategy); }
+.session-card[data-track="creativity"] { border-left-color: var(--c-creativity); }
+.session-card[data-track="pedagogy"] { border-left-color: var(--c-pedagogy); }
+.session-card[data-track="safeguarding"] { border-left-color: var(--c-safeguarding); }
+
+.session-card summary {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .65rem .75rem;
+  cursor: pointer;
+  list-style: none;
+  min-height: 44px;
+}
+
+.session-card summary::-webkit-details-marker { display: none; }
+
+.track-badge {
+  font-size: .65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  padding: .15rem .4rem;
+  border-radius: 4px;
+  color: #fff;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.track-badge.strategy { background: var(--c-strategy); }
+.track-badge.creativity { background: var(--c-creativity); }
+.track-badge.pedagogy { background: var(--c-pedagogy); }
+.track-badge.safeguarding { background: var(--c-safeguarding); }
+
+.session-info { flex: 1; min-width: 0; }
+.session-title { font-weight: 600; font-size: .9rem; }
+
+.session-meta {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  margin-top: .2rem;
+  font-size: .8rem;
+  color: var(--c-text-secondary);
+}
+
+.session-meta img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.session-room {
+  font-size: .75rem;
+  color: var(--c-text-secondary);
+  background: var(--c-bg);
+  padding: .1rem .35rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.session-detail {
+  padding: .5rem .75rem .75rem;
+  font-size: .85rem;
+  line-height: 1.6;
+  color: var(--c-text-secondary);
+  border-top: 1px solid var(--c-border);
+}
+
+/* ===== Speakers ===== */
+.speakers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .75rem;
+}
+
+.speaker-card {
+  background: var(--c-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.speaker-card summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: .75rem .5rem;
+  cursor: pointer;
+  list-style: none;
+  min-height: 44px;
+}
+
+.speaker-card summary::-webkit-details-marker { display: none; }
+
+.speaker-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: .4rem;
+}
+
+.speaker-name { font-weight: 700; font-size: .85rem; }
+.speaker-affiliation { font-size: .75rem; color: var(--c-text-secondary); }
+
+.speaker-detail {
+  padding: .5rem .75rem .75rem;
+  font-size: .82rem;
+  line-height: 1.55;
+  color: var(--c-text-secondary);
+  border-top: 1px solid var(--c-border);
+}
+
+.speaker-detail .speaker-sessions {
+  margin-top: .5rem;
+  padding-top: .5rem;
+  border-top: 1px dashed var(--c-border);
+  font-size: .78rem;
+}
+
+.speaker-detail .speaker-sessions strong { color: var(--c-text); }
+
+/* ===== Info ===== */
+.info-section h2 {
+  font-size: 1.05rem;
+  margin: 1.25rem 0 .5rem;
+  padding-bottom: .25rem;
+  border-bottom: 2px solid var(--c-border);
+}
+
+.info-section h2:first-child { margin-top: .5rem; }
+
+.media-card {
+  display: flex;
+  gap: .75rem;
+  align-items: flex-start;
+  background: var(--c-surface);
+  border-radius: var(--radius);
+  padding: .75rem;
+  box-shadow: var(--shadow);
+}
+
+.media-card img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.media-card .media-info { font-size: .85rem; }
+.media-card .media-info strong { display: block; margin-bottom: .2rem; }
+
+.sponsor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .5rem;
+}
+
+.sponsor-card {
+  background: var(--c-surface);
+  border-radius: var(--radius);
+  padding: .65rem .75rem;
+  box-shadow: var(--shadow);
+}
+
+.sponsor-card strong { display: block; font-size: .85rem; margin-bottom: .15rem; }
+.sponsor-card p { font-size: .78rem; color: var(--c-text-secondary); margin: 0; }
+
+.room-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .35rem;
+}
+
+.room-list li {
+  background: var(--c-surface);
+  padding: .45rem .65rem;
+  border-radius: 6px;
+  font-size: .85rem;
+  font-weight: 500;
+}
+
+/* ===== Breakpoints ===== */
+@media (min-width: 600px) {
+  .speakers-grid { grid-template-columns: repeat(3, 1fr); }
+  .sponsor-grid { grid-template-columns: repeat(3, 1fr); }
+  .room-list { grid-template-columns: repeat(3, 1fr); }
+  .section { padding: 1rem 1.5rem; }
+}
+
+@media (min-width: 900px) {
+  .speakers-grid { grid-template-columns: repeat(4, 1fr); }
+  .site-header h1 { font-size: 1.35rem; }
+}
