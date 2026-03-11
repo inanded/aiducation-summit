@@ -6,3 +6,5 @@ node_modules/
 Thumbs.db
 .claude-flow/
 package-lock.json
+
+.vercel

@@ -3,21 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#070b14">
   <title>AIducation Summit 2026</title>
-  <meta name="description" content="AIducation Summit — 14 March 2026, Bucharest. A one-day education conference about AI in schools.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="AIducation Summit — 14 March 2026, Bucharest. A one-day education conference exploring AI in schools.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- ===== Hero Header ===== -->
-<header class="site-header">
-  <img src="AIducation%20Logo%20white.png" alt="AIducation Summit" class="logo">
-  <p class="date">Saturday 14 March 2026 &bull; Bucharest</p>
-  <span class="tagline">Innovation with Integrity</span>
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <canvas id="hero-canvas" class="hero-canvas"></canvas>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-content">
+    <img src="AIducation%20Logo%20white.png" alt="AIducation Summit" class="logo">
+    <p class="date">Saturday 14 March 2026 &bull; Bucharest</p>
+    <span class="tagline">Innovation with Integrity</span>
+  </div>
 </header>
 
 <!-- ===== Tab Bar ===== -->
@@ -33,457 +35,470 @@
 <!-- ============================================================ -->
 <main id="schedule" class="view active">
 
-  <!-- Track Filters -->
-  <div class="track-filters">
-    <button class="track-filter active" data-track="all">All Tracks</button>
+  <div class="search-bar" data-reveal>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="search" id="search-input" placeholder="Search sessions or speakers..." autocomplete="off">
+  </div>
+
+  <div class="track-filters" data-reveal>
+    <button class="track-filter active" data-track="all">All</button>
     <button class="track-filter" data-track="strategy">Strategy</button>
     <button class="track-filter" data-track="creativity">Creativity</button>
     <button class="track-filter" data-track="pedagogy">Pedagogy</button>
     <button class="track-filter" data-track="safeguarding">Safeguarding</button>
+    <button class="fav-filter" id="fav-filter-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Saved
+    </button>
   </div>
 
-  <!-- 09:00 Registration -->
-  <div class="time-slot-header" data-start="540" data-end="570">
-    09:00 &ndash; 09:30 <span class="slot-label">Registration</span>
-  </div>
-  <div class="banner">Registration &amp; Welcome Coffee</div>
+  <!-- 09:00 -->
+  <div class="time-slot-header" data-start="540" data-end="570" data-reveal>09:00 &ndash; 09:30 <span class="slot-label">Registration</span></div>
+  <div class="banner" data-reveal>Registration &amp; Welcome Coffee</div>
 
   <!-- 09:30 Keynote -->
-  <div class="time-slot-header" data-start="570" data-end="615">
-    09:30 &ndash; 10:15 <span class="slot-label">Opening Keynote</span>
+  <div class="time-slot-header" data-start="570" data-end="615" data-reveal>09:30 &ndash; 10:15 <span class="slot-label">Opening Keynote</span></div>
+  <div class="keynote-card" data-reveal>
+    <span class="keynote-label">Keynote</span>
+    <div class="keynote-title">Innovation with Integrity: Keeping Humans at the Heart of AI in Schools</div>
+    <div class="keynote-speaker">
+      <img src="Headshots/rose-luckin.jpg" alt="" loading="lazy">
+      <a href="#speaker/rose-luckin" data-speaker="rose-luckin">Professor Rose Luckin</a>
+    </div>
+    <div class="keynote-detail">Professor Rose Luckin draws on over three decades of research to set out a human-centred framework for AI adoption. She explores why strategy without integrity leads to ungoverned risk, why governance without understanding leads to paralysis, and why innovation without purpose risks replacing the very human capabilities we should be developing.</div>
+    <button class="fav-btn" data-fav-id="keynote-1" aria-label="Save session"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></svg></button>
   </div>
-  <details class="session-card" data-track="strategy">
-    <summary>
-      <span class="track-badge keynote">Keynote</span>
-      <div class="session-info">
-        <div class="session-title">Innovation with Integrity: Keeping Humans at the Heart of AI in Schools</div>
-        <div class="session-meta">
-          <img src="Headshots/rose-luckin.jpg" alt="" loading="lazy">
-          <a href="#speaker/rose-luckin" data-speaker="rose-luckin">Professor Rose Luckin</a>
-        </div>
-      </div>
-    </summary>
-    <div class="session-detail">Professor Rose Luckin draws on over three decades of research and her work with schools worldwide to set out a human-centred framework for AI adoption. She explores why strategy without integrity leads to &ldquo;shadow AI&rdquo; and ungoverned risk, why governance without understanding leads to paralysis, and why innovation without purpose risks replacing the very human capabilities we should be developing in our learners.</div>
-  </details>
 
   <!-- 10:30 Session 1 -->
-  <div class="time-slot-header" data-start="630" data-end="675">
-    10:30 &ndash; 11:15 <span class="slot-label">Session 1</span>
-  </div>
+  <div class="time-slot-header" data-start="630" data-end="675" data-reveal>10:30 &ndash; 11:15 <span class="slot-label">Session 1</span></div>
 
-  <details class="session-card" data-track="strategy">
-    <summary>
+  <div class="session-card" data-track="strategy" data-reveal data-reveal-delay="1">
+    <div class="card-header">
       <span class="track-badge strategy">Strategy</span>
       <div class="session-info">
         <div class="session-title">AI for Operational Efficiency</div>
         <div class="session-meta"><img src="Headshots/chris-loveday.jpg" alt="" loading="lazy"> <a href="#speaker/chris-loveday" data-speaker="chris-loveday">Chris Loveday</a></div>
       </div>
       <span class="session-room">Social Sciences 2</span>
-    </summary>
-    <div class="session-detail">Move beyond off-the-shelf solutions and learn how to build bespoke AI tools and agents that support business operations. This session focuses on freeing up staff time and enabling a focus on high-value work, ensuring professional judgement remains at the heart of the process.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s1-1" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Move beyond off-the-shelf solutions and learn how to build bespoke AI tools and agents that support business operations, freeing up staff time for high-value work.</div></div>
+  </div>
 
-  <details class="session-card" data-track="strategy">
-    <summary>
+  <div class="session-card" data-track="strategy" data-reveal data-reveal-delay="2">
+    <div class="card-header">
       <span class="track-badge strategy">Strategy</span>
       <div class="session-info">
-        <div class="session-title">Critical Thinking with AI &ndash; Using the AI Cards for Educators</div>
+        <div class="session-title">Critical Thinking with AI &ndash; The AI Cards for Educators</div>
         <div class="session-meta"><img src="Headshots/ben-whitaker.jpg" alt="" loading="lazy"> <a href="#speaker/ben-whitaker" data-speaker="ben-whitaker">Ben Whitaker</a></div>
       </div>
       <span class="session-room">Humanities 4</span>
-    </summary>
-    <div class="session-detail">Participants will leave with a clearer sense that AI risk in education is not primarily technical; it is cognitive and cultural. Using the AI Cards as thinking tools, you will learn how to spot where AI quietly replaces judgement, where confidence masks weak reasoning, and how to use structured questioning to maintain student agency.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s1-2" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">AI risk in education is cognitive and cultural. Using the AI Cards as thinking tools, learn to spot where AI quietly replaces judgement and how structured questioning maintains student agency.</div></div>
+  </div>
 
-  <details class="session-card" data-track="pedagogy">
-    <summary>
+  <div class="session-card" data-track="pedagogy" data-reveal data-reveal-delay="3">
+    <div class="card-header">
       <span class="track-badge pedagogy">Pedagogy</span>
       <div class="session-info">
-        <div class="session-title">AI in a Primary Setting: Tactics and Strategy for Success</div>
+        <div class="session-title">AI in a Primary Setting: Tactics and Strategy</div>
         <div class="session-meta"><img src="Headshots/sacha-van-straten.jpg" alt="" loading="lazy"> <a href="#speaker/sacha-van-straten" data-speaker="sacha-van-straten">Sacha van Straten</a></div>
       </div>
       <span class="session-room">IT Lab 02</span>
-    </summary>
-    <div class="session-detail">This session moves beyond the surface level of AI tools to explore the strategic integration of technology in EYFS and Primary environments. Sacha demonstrates how to use AI to reframe assessment and learning outcomes while maintaining the integrity of early years pedagogy.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s1-3" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Strategic integration of technology in EYFS and Primary environments. Using AI to reframe assessment and learning outcomes while maintaining the integrity of early years pedagogy.</div></div>
+  </div>
 
-  <details class="session-card" data-track="pedagogy">
-    <summary>
+  <div class="session-card" data-track="pedagogy" data-reveal data-reveal-delay="4">
+    <div class="card-header">
       <span class="track-badge pedagogy">Pedagogy</span>
       <div class="session-info">
         <div class="session-title">Policy to Classroom: Protecting Student Agency</div>
         <div class="session-meta"><img src="Headshots/daire-ni-uanachain.jpg" alt="" loading="lazy"> <a href="#speaker/daire-ni-uanachain" data-speaker="daire-ni-uanachain">Daire Maria Ni Uanachain</a></div>
       </div>
       <span class="session-room">Math 4</span>
-    </summary>
-    <div class="session-detail">This interactive workshop explores a three-layer model of curriculum architecture: governance (structured autonomy), pedagogy (inquiry as the vehicle), and assessment (the gatekeeper of student voice). Using concrete examples from secondary geopolitics projects, participants will see how policy values become learnable competencies.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s1-4" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">A three-layer model of curriculum architecture: governance, pedagogy, and assessment. Using concrete examples to show how policy values become learnable competencies.</div></div>
+  </div>
 
-  <details class="session-card" data-track="pedagogy">
-    <summary>
+  <div class="session-card" data-track="pedagogy" data-reveal data-reveal-delay="5">
+    <div class="card-header">
       <span class="track-badge pedagogy">Pedagogy</span>
       <div class="session-info">
         <div class="session-title">Thoughtful Use of AI in the Classroom</div>
         <div class="session-meta"><img src="Headshots/amelia-king.jpg" alt="" loading="lazy"> <a href="#speaker/amelia-king" data-speaker="amelia-king">Amelia King</a></div>
       </div>
       <span class="session-room">Social Sciences 3</span>
-    </summary>
-    <div class="session-detail">This workshop is all about ensuring the purposeful use of AI by both students and teachers. We will dive into the latest research regarding the impact of AI on critical thinking and metacognition, and practise techniques to support AI-empowered thinkers that you can use in your classroom as soon as Monday hits.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s1-5" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Dive into the latest research on AI's impact on critical thinking and metacognition. Practise techniques to support AI-empowered thinkers you can use on Monday.</div></div>
+  </div>
 
-  <details class="session-card" data-track="safeguarding">
-    <summary>
+  <div class="session-card" data-track="safeguarding" data-reveal data-reveal-delay="6">
+    <div class="card-header">
       <span class="track-badge safeguarding">Safeguarding</span>
       <div class="session-info">
-        <div class="session-title">Responsible Chatbot Design for Accessibility and Inclusion</div>
+        <div class="session-title">Responsible Chatbot Design for Accessibility</div>
         <div class="session-meta"><img src="Headshots/david-curran.jpg" alt="" loading="lazy"> <a href="#speaker/david-curran" data-speaker="david-curran">David Curran</a></div>
       </div>
       <span class="session-room">IT Lab 01</span>
-    </summary>
-    <div class="session-detail">This hands-on workshop explores how and why chatbots can be used responsibly in education to improve accessibility and learner independence. Grounded in real school practice, the session focuses on designing chatbots that support all learners and reduce cognitive load without replacing human judgement.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s1-6" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Hands-on workshop on using chatbots responsibly in education. Design chatbots that support all learners and reduce cognitive load. Build your own using Mindjoy.</div></div>
+  </div>
 
-  <details class="session-card" data-track="safeguarding">
-    <summary>
+  <div class="session-card" data-track="safeguarding" data-reveal data-reveal-delay="7">
+    <div class="card-header">
       <span class="track-badge safeguarding">Safeguarding</span>
       <div class="session-info">
-        <div class="session-title">AI &ndash; Can we ever put the safe into safeguarding?</div>
+        <div class="session-title">AI &ndash; Can we put the safe into safeguarding?</div>
         <div class="session-meta"><img src="Headshots/james-garnett.jpg" alt="" loading="lazy"> <a href="#speaker/james-garnett" data-speaker="james-garnett">James Garnett</a> &amp; <a href="#speaker/emma-darcy" data-speaker="emma-darcy">Emma Darcy</a></div>
       </div>
       <span class="session-room">Math 5</span>
-    </summary>
-    <div class="session-detail">Rethink safeguarding as an opportunity rather than a restriction. Explore how to help learners question and critique AI responsibly in a world of chatbots and deepfakes, with practical examples for school integration and digital strategy.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s1-7" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Rethink safeguarding as an opportunity. Explore how to help learners question and critique AI responsibly in a world of chatbots and deepfakes.</div></div>
+  </div>
 
   <!-- 11:15 Break -->
-  <div class="time-slot-header" data-start="675" data-end="705">
-    11:15 &ndash; 11:45 <span class="slot-label">Break</span>
-  </div>
-  <div class="banner">Networking Break</div>
+  <div class="time-slot-header" data-start="675" data-end="705" data-reveal>11:15 &ndash; 11:45 <span class="slot-label">Break</span></div>
+  <div class="banner" data-reveal>Networking Break</div>
 
   <!-- 11:45 Session 2 -->
-  <div class="time-slot-header" data-start="705" data-end="750">
-    11:45 &ndash; 12:30 <span class="slot-label">Session 2</span>
-  </div>
+  <div class="time-slot-header" data-start="705" data-end="750" data-reveal>11:45 &ndash; 12:30 <span class="slot-label">Session 2</span></div>
 
-  <details class="session-card" data-track="strategy">
-    <summary>
+  <div class="session-card" data-track="strategy" data-reveal data-reveal-delay="1">
+    <div class="card-header">
       <span class="track-badge strategy">Strategy</span>
       <div class="session-info">
         <div class="session-title">AI for Education Optimisation</div>
         <div class="session-meta"><img src="Headshots/thomas-akintan.jpg" alt="" loading="lazy"> <a href="#speaker/thomas-akintan" data-speaker="thomas-akintan">Thomas Akintan</a> &amp; <a href="#speaker/kevin-loi-heng" data-speaker="kevin-loi-heng">Kevin Loi-Heng</a></div>
       </div>
       <span class="session-room">Math 6</span>
-    </summary>
-    <div class="session-detail">Join the Avalon team for workshops focused on optimising school workflows. These sessions feature live demonstrations of AI tools with practical use cases tailored for various roles, specifically targeting admin and teacher-focused areas to drive tangible operational value.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s2-1" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Live demonstrations of AI tools with practical use cases for admin and teacher-focused areas to drive tangible operational value.</div></div>
+  </div>
 
-  <details class="session-card" data-track="strategy">
-    <summary>
+  <div class="session-card" data-track="strategy" data-reveal data-reveal-delay="2">
+    <div class="card-header">
       <span class="track-badge strategy">Strategy</span>
       <div class="session-info">
-        <div class="session-title">From Data to Decisions: Building an Education Data Spine</div>
+        <div class="session-title">Building an Education Data Spine</div>
         <div class="session-meta"><img src="Headshots/matt-woodruff.jpg" alt="" loading="lazy"> <a href="#speaker/matt-woodruff" data-speaker="matt-woodruff">Matt Woodruff</a></div>
       </div>
       <span class="session-room">Math 5</span>
-    </summary>
-    <div class="session-detail">Drawing on his work with over 30 Multi-Academy Trusts, Matt walks through the data and AI maturity lifecycle. Participants will explore real-world examples, including predictive attendance models achieving 93% accuracy, and examine why collaborative, non-profit models outperform proprietary alternatives.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s2-2" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">The data and AI maturity lifecycle, including predictive attendance models achieving 93% accuracy. Why non-profit models outperform proprietary alternatives.</div></div>
+  </div>
 
-  <details class="session-card" data-track="strategy">
-    <summary>
+  <div class="session-card" data-track="strategy" data-reveal data-reveal-delay="3">
+    <div class="card-header">
       <span class="track-badge strategy">Strategy</span>
       <div class="session-info">
-        <div class="session-title">AI in Practice: The 90-Day AI Action Plan</div>
+        <div class="session-title">The 90-Day AI Action Plan</div>
         <div class="session-meta"><img src="Headshots/luke-harris.jpg" alt="" loading="lazy"> <a href="#speaker/luke-harris" data-speaker="luke-harris">Luke Harris</a></div>
       </div>
       <span class="session-room">Social Sciences 2</span>
-    </summary>
-    <div class="session-detail">This workshop offers a concise and actionable guide to implementing AI effectively across a school or department. It covers how to build a clear AI vision, select the right tools, and ask strategic questions that ensure pedagogy leads technology. Participants will leave with a practical 90-day AI action plan tailored to their own context.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s2-3" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Build a clear AI vision, select the right tools, and leave with a practical 90-day action plan tailored to your context.</div></div>
+  </div>
 
-  <details class="session-card" data-track="creativity">
-    <summary>
+  <div class="session-card" data-track="creativity" data-reveal data-reveal-delay="4">
+    <div class="card-header">
       <span class="track-badge creativity">Creativity</span>
       <div class="session-info">
-        <div class="session-title">Canva Code &ndash; Build your own apps for the classroom</div>
+        <div class="session-title">Canva Code &ndash; Build apps for the classroom</div>
         <div class="session-meta"><img src="Headshots/aaron-patching.jpg" alt="" loading="lazy"> <a href="#speaker/aaron-patching" data-speaker="aaron-patching">Aaron Patching</a></div>
       </div>
       <span class="session-room">IT Lab 02</span>
-    </summary>
-    <div class="session-detail">Join Aaron for a whirlwind tour of what Canva Code can do for you and your students. Learn how to create your very own deployable apps and widgets to either save you time, check learning, or introduce &ldquo;vibe coding&rdquo; to your students.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s2-4" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Create your own deployable apps and widgets to save time, check learning, or introduce &ldquo;vibe coding&rdquo; to your students.</div></div>
+  </div>
 
-  <details class="session-card" data-track="creativity">
-    <summary>
+  <div class="session-card" data-track="creativity" data-reveal data-reveal-delay="5">
+    <div class="card-header">
       <span class="track-badge creativity">Creativity</span>
       <div class="session-info">
         <div class="session-title">What does creativity look like in the age of AI?</div>
         <div class="session-meta"><img src="Headshots/trudi-barrow.jpg" alt="" loading="lazy"> <a href="#speaker/trudi-barrow" data-speaker="trudi-barrow">Trudi Barrow</a></div>
       </div>
       <span class="session-room">Social Sciences 3</span>
-    </summary>
-    <div class="session-detail">This practical workshop supports teachers to explore AI as a creative material and thinking partner, not a replacement. Using classroom-ready examples and hands-on activities, participants will examine creative fidelity, design thinking, and how to use AI to expand creative practice.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s2-5" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Explore AI as a creative material and thinking partner. Hands-on activities examining creative fidelity, design thinking, and expanding creative practice.</div></div>
+  </div>
 
-  <details class="session-card" data-track="pedagogy">
-    <summary>
+  <div class="session-card" data-track="pedagogy" data-reveal data-reveal-delay="6">
+    <div class="card-header">
       <span class="track-badge pedagogy">Pedagogy</span>
       <div class="session-info">
         <div class="session-title">Policy to Classroom: Protecting Student Agency</div>
         <div class="session-meta"><img src="Headshots/daire-ni-uanachain.jpg" alt="" loading="lazy"> <a href="#speaker/daire-ni-uanachain" data-speaker="daire-ni-uanachain">Daire Maria Ni Uanachain</a></div>
       </div>
       <span class="session-room">Math 4</span>
-    </summary>
-    <div class="session-detail">This interactive workshop explores a three-layer model of curriculum architecture: governance, pedagogy, and assessment. Attendees will diagnose where student agency is lost in their own context and sketch a redesign scalable to both Primary and Secondary settings.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s2-6" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Diagnose where student agency is lost in your own context and sketch a redesign scalable to both Primary and Secondary settings.</div></div>
+  </div>
 
-  <details class="session-card" data-track="safeguarding">
-    <summary>
+  <div class="session-card" data-track="safeguarding" data-reveal data-reveal-delay="7">
+    <div class="card-header">
       <span class="track-badge safeguarding">Safeguarding</span>
       <div class="session-info">
-        <div class="session-title">Inclusion by Design: AI and Everyday Tools for Differentiation</div>
+        <div class="session-title">Inclusion by Design: AI for Differentiation</div>
         <div class="session-meta"><img src="Headshots/david-curran.jpg" alt="" loading="lazy"> <a href="#speaker/david-curran" data-speaker="david-curran">David Curran</a></div>
       </div>
       <span class="session-room">IT Lab 01</span>
-    </summary>
-    <div class="session-detail">This practical session explores how AI and built-in accessibility features within existing school platforms can support inclusion and differentiation. It demonstrates how tools such as text-to-speech, dictation, translation, and AI-assisted planning can reduce barriers and increase learner independence.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s2-7" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">How text-to-speech, dictation, translation, and AI-assisted planning can reduce barriers and increase learner independence.</div></div>
+  </div>
 
-  <details class="session-card" data-track="safeguarding">
-    <summary>
+  <div class="session-card" data-track="safeguarding" data-reveal>
+    <div class="card-header">
       <span class="track-badge safeguarding">Safeguarding</span>
       <div class="session-info">
-        <div class="session-title">Smarter Tools, Wider Doors: AI + UDL for Inclusion</div>
+        <div class="session-title">Smarter Tools, Wider Doors: AI + UDL</div>
         <div class="session-meta"><img src="Headshots/ben-whitaker.jpg" alt="" loading="lazy"> <a href="#speaker/ben-whitaker" data-speaker="ben-whitaker">Ben Whitaker</a></div>
       </div>
       <span class="session-room">Humanities 4</span>
-    </summary>
-    <div class="session-detail">Explore how AI and Universal Design for Learning (UDL) combine to transform inclusion. Ben shares real-world examples of how technology helps educators adapt content and personalise support for neurodiverse students, EAL learners, and those needing an extra boost.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s2-8" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">How AI and Universal Design for Learning combine to transform inclusion for neurodiverse students, EAL learners, and those needing an extra boost.</div></div>
+  </div>
 
   <!-- 12:30 Lunch -->
-  <div class="time-slot-header" data-start="750" data-end="840">
-    12:30 &ndash; 13:45 <span class="slot-label">Lunch</span>
-  </div>
-  <div class="banner">Lunch &amp; Exhibition</div>
+  <div class="time-slot-header" data-start="750" data-end="840" data-reveal>12:30 &ndash; 13:45 <span class="slot-label">Lunch</span></div>
+  <div class="banner" data-reveal>Lunch &amp; Exhibition</div>
 
   <!-- 14:00 Session 3 -->
-  <div class="time-slot-header" data-start="840" data-end="885">
-    14:00 &ndash; 14:45 <span class="slot-label">Session 3</span>
-  </div>
+  <div class="time-slot-header" data-start="840" data-end="885" data-reveal>14:00 &ndash; 14:45 <span class="slot-label">Session 3</span></div>
 
-  <details class="session-card" data-track="strategy">
-    <summary>
+  <div class="session-card" data-track="strategy" data-reveal data-reveal-delay="1">
+    <div class="card-header">
       <span class="track-badge strategy">Strategy</span>
       <div class="session-info">
         <div class="session-title">AI for Operational Efficiency</div>
         <div class="session-meta"><img src="Headshots/chris-loveday.jpg" alt="" loading="lazy"> <a href="#speaker/chris-loveday" data-speaker="chris-loveday">Chris Loveday</a></div>
       </div>
       <span class="session-room">Social Sciences 2</span>
-    </summary>
-    <div class="session-detail">Move beyond off-the-shelf solutions and learn how to build bespoke AI tools and agents that support business operations. This session focuses on freeing up staff time and enabling a focus on high-value work, ensuring professional judgement remains at the heart of the process.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s3-1" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Build bespoke AI tools and agents that support business operations, freeing up staff time for high-value work.</div></div>
+  </div>
 
-  <details class="session-card" data-track="strategy">
-    <summary>
+  <div class="session-card" data-track="strategy" data-reveal data-reveal-delay="2">
+    <div class="card-header">
       <span class="track-badge strategy">Strategy</span>
       <div class="session-info">
         <div class="session-title">From Strategy to Classroom: Embedding AI Purposefully</div>
         <div class="session-meta"><img src="Headshots/rose-luckin.jpg" alt="" loading="lazy"> <a href="#speaker/rose-luckin" data-speaker="rose-luckin">Professor Rose Luckin</a></div>
       </div>
       <span class="session-room">Math 4</span>
-    </summary>
-    <div class="session-detail">Building on her decades of research in the learning sciences, Rose guides participants through a practical framework for making strategic AI decisions that land meaningfully in the classroom. Explore how to evaluate when AI genuinely enhances pedagogy and what it takes to develop teachers as critical, confident users rather than passive consumers of EdTech.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s3-2" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">A practical framework for making strategic AI decisions that land meaningfully in the classroom. Developing teachers as critical, confident users of EdTech.</div></div>
+  </div>
 
-  <details class="session-card" data-track="strategy">
-    <summary>
+  <div class="session-card" data-track="strategy" data-reveal data-reveal-delay="3">
+    <div class="card-header">
       <span class="track-badge strategy">Strategy</span>
       <div class="session-info">
-        <div class="session-title">Critical Thinking with AI &ndash; Using the AI Cards for Educators</div>
+        <div class="session-title">Critical Thinking with AI &ndash; The AI Cards for Educators</div>
         <div class="session-meta"><img src="Headshots/ben-whitaker.jpg" alt="" loading="lazy"> <a href="#speaker/ben-whitaker" data-speaker="ben-whitaker">Ben Whitaker</a></div>
       </div>
       <span class="session-room">Humanities 4</span>
-    </summary>
-    <div class="session-detail">Participants will leave with a clearer sense that AI risk in education is not primarily technical; it is cognitive and cultural. Using the AI Cards as thinking tools, learn how to spot where AI quietly replaces judgement and how to use structured questioning to maintain student agency.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s3-3" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Spot where AI quietly replaces judgement and use structured questioning to maintain student agency.</div></div>
+  </div>
 
-  <details class="session-card" data-track="pedagogy">
-    <summary>
+  <div class="session-card" data-track="pedagogy" data-reveal data-reveal-delay="4">
+    <div class="card-header">
       <span class="track-badge pedagogy">Pedagogy</span>
       <div class="session-info">
-        <div class="session-title">The Archimedes Ecosystem: Human-Centric AI in Practice</div>
+        <div class="session-title">The Archimedes Ecosystem: Human-Centric AI</div>
         <div class="session-meta"><img src="Headshots/ioannis-anapliotis.jpg" alt="" loading="lazy"> <a href="#speaker/ioannis-anapliotis" data-speaker="ioannis-anapliotis">Ioannis Anapliotis</a></div>
       </div>
       <span class="session-room">Math 6</span>
-    </summary>
-    <div class="session-detail">Ioannis designs teacher-ready AI literacy programmes, safe GenAI classroom practices, and curriculum-aligned learning experiences where students build, test, and critically evaluate AI systems. His work blends pedagogy, innovation, and ethics.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s3-4" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Teacher-ready AI literacy programmes where students build, test, and critically evaluate AI systems. Pedagogy, innovation, and ethics combined.</div></div>
+  </div>
 
-  <details class="session-card" data-track="creativity">
-    <summary>
+  <div class="session-card" data-track="creativity" data-reveal data-reveal-delay="5">
+    <div class="card-header">
       <span class="track-badge creativity">Creativity</span>
       <div class="session-info">
-        <div class="session-title">Canva Code &ndash; Build your own apps for the classroom</div>
+        <div class="session-title">Canva Code &ndash; Build apps for the classroom</div>
         <div class="session-meta"><img src="Headshots/aaron-patching.jpg" alt="" loading="lazy"> <a href="#speaker/aaron-patching" data-speaker="aaron-patching">Aaron Patching</a></div>
       </div>
       <span class="session-room">IT Lab 02</span>
-    </summary>
-    <div class="session-detail">Join Aaron for a whirlwind tour of what Canva Code can do for you and your students. Learn how to create your very own deployable apps and widgets to either save you time, check learning, or introduce &ldquo;vibe coding&rdquo; to your students.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s3-5" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Create deployable apps and widgets to save time, check learning, or introduce vibe coding to your students.</div></div>
+  </div>
 
-  <details class="session-card" data-track="pedagogy">
-    <summary>
+  <div class="session-card" data-track="pedagogy" data-reveal data-reveal-delay="6">
+    <div class="card-header">
       <span class="track-badge pedagogy">Pedagogy</span>
       <div class="session-info">
         <div class="session-title">Thoughtful Use of AI in the Classroom</div>
         <div class="session-meta"><img src="Headshots/amelia-king.jpg" alt="" loading="lazy"> <a href="#speaker/amelia-king" data-speaker="amelia-king">Amelia King</a></div>
       </div>
       <span class="session-room">Social Sciences 3</span>
-    </summary>
-    <div class="session-detail">This workshop is all about ensuring the purposeful use of AI by both students and teachers. We will dive into the latest research regarding the impact of AI on critical thinking and metacognition, and practise techniques to support AI-empowered thinkers.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s3-6" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">The latest research on AI, critical thinking, and metacognition. Techniques to support AI-empowered thinkers.</div></div>
+  </div>
 
-  <details class="session-card" data-track="safeguarding">
-    <summary>
+  <div class="session-card" data-track="safeguarding" data-reveal data-reveal-delay="7">
+    <div class="card-header">
       <span class="track-badge safeguarding">Safeguarding</span>
       <div class="session-info">
-        <div class="session-title">Responsible Chatbot Design for Accessibility and Inclusion</div>
+        <div class="session-title">Responsible Chatbot Design for Accessibility</div>
         <div class="session-meta"><img src="Headshots/david-curran.jpg" alt="" loading="lazy"> <a href="#speaker/david-curran" data-speaker="david-curran">David Curran</a></div>
       </div>
       <span class="session-room">IT Lab 01</span>
-    </summary>
-    <div class="session-detail">This hands-on workshop explores how and why chatbots can be used responsibly in education to improve accessibility and learner independence. Grounded in real school practice, designed for all learners.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s3-7" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Design chatbots that support all learners and reduce cognitive load without replacing human judgement.</div></div>
+  </div>
 
-  <details class="session-card" data-track="safeguarding">
-    <summary>
+  <div class="session-card" data-track="safeguarding" data-reveal>
+    <div class="card-header">
       <span class="track-badge safeguarding">Safeguarding</span>
       <div class="session-info">
-        <div class="session-title">AI &ndash; Can we ever put the safe into safeguarding?</div>
+        <div class="session-title">AI &ndash; Can we put the safe into safeguarding?</div>
         <div class="session-meta"><img src="Headshots/james-garnett.jpg" alt="" loading="lazy"> <a href="#speaker/james-garnett" data-speaker="james-garnett">James Garnett</a> &amp; <a href="#speaker/emma-darcy" data-speaker="emma-darcy">Emma Darcy</a></div>
       </div>
       <span class="session-room">Math 5</span>
-    </summary>
-    <div class="session-detail">Rethink safeguarding as an opportunity rather than a restriction. Explore how to help learners question and critique AI responsibly in a world of chatbots and deepfakes.</div>
-  </details>
-
-  <!-- 14:45 Session 4 -->
-  <div class="time-slot-header" data-start="885" data-end="930">
-    14:45 &ndash; 15:30 <span class="slot-label">Session 4</span>
+      <button class="fav-btn" data-fav-id="s3-8" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Rethink safeguarding as an opportunity. Help learners question and critique AI responsibly.</div></div>
   </div>
 
-  <details class="session-card" data-track="strategy">
-    <summary>
+  <!-- 14:45 Session 4 -->
+  <div class="time-slot-header" data-start="885" data-end="930" data-reveal>14:45 &ndash; 15:30 <span class="slot-label">Session 4</span></div>
+
+  <div class="session-card" data-track="strategy" data-reveal data-reveal-delay="1">
+    <div class="card-header">
       <span class="track-badge strategy">Strategy</span>
       <div class="session-info">
         <div class="session-title">AI for Education Optimisation</div>
         <div class="session-meta"><img src="Headshots/thomas-akintan.jpg" alt="" loading="lazy"> <a href="#speaker/thomas-akintan" data-speaker="thomas-akintan">Thomas Akintan</a> &amp; <a href="#speaker/kevin-loi-heng" data-speaker="kevin-loi-heng">Kevin Loi-Heng</a></div>
       </div>
       <span class="session-room">Math 6</span>
-    </summary>
-    <div class="session-detail">Join the Avalon team for workshops focused on optimising school workflows with live demonstrations of AI tools and practical use cases.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s4-1" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Live demonstrations of AI tools with practical use cases for operational value.</div></div>
+  </div>
 
-  <details class="session-card" data-track="strategy">
-    <summary>
+  <div class="session-card" data-track="strategy" data-reveal data-reveal-delay="2">
+    <div class="card-header">
       <span class="track-badge strategy">Strategy</span>
       <div class="session-info">
         <div class="session-title">The AI Governance and Ethics Challenge</div>
         <div class="session-meta"><img src="Headshots/matt-woodruff.jpg" alt="" loading="lazy"> <a href="#speaker/matt-woodruff" data-speaker="matt-woodruff">Matt Woodruff</a></div>
       </div>
       <span class="session-room">Math 5</span>
-    </summary>
-    <div class="session-detail">Matt shares findings from his PhD research on using explainable AI to predict safeguarding risks while identifying and preventing algorithmic bias. He demonstrates how generative AI is deployed responsibly through the Marginal Gains platform to support governors and SENCOs.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s4-2" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">PhD research on explainable AI for safeguarding risks and preventing algorithmic bias. Responsible AI deployment through the Marginal Gains platform.</div></div>
+  </div>
 
-  <details class="session-card" data-track="strategy">
-    <summary>
+  <div class="session-card" data-track="strategy" data-reveal data-reveal-delay="3">
+    <div class="card-header">
       <span class="track-badge strategy">Strategy</span>
       <div class="session-info">
-        <div class="session-title">AI in Practice: The 90-Day AI Action Plan</div>
+        <div class="session-title">The 90-Day AI Action Plan</div>
         <div class="session-meta"><img src="Headshots/luke-harris.jpg" alt="" loading="lazy"> <a href="#speaker/luke-harris" data-speaker="luke-harris">Luke Harris</a></div>
       </div>
       <span class="session-room">Social Sciences 2</span>
-    </summary>
-    <div class="session-detail">This workshop offers a concise and actionable guide to implementing AI effectively. Participants will design staff training to build confidence and leave with a practical 90-day AI action plan.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s4-3" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Design staff training to build confidence and leave with a practical 90-day AI action plan.</div></div>
+  </div>
 
-  <details class="session-card" data-track="creativity">
-    <summary>
+  <div class="session-card" data-track="creativity" data-reveal data-reveal-delay="4">
+    <div class="card-header">
       <span class="track-badge creativity">Creativity</span>
       <div class="session-info">
         <div class="session-title">What does creativity look like in the age of AI?</div>
         <div class="session-meta"><img src="Headshots/trudi-barrow.jpg" alt="" loading="lazy"> <a href="#speaker/trudi-barrow" data-speaker="trudi-barrow">Trudi Barrow</a></div>
       </div>
       <span class="session-room">Social Sciences 3</span>
-    </summary>
-    <div class="session-detail">This practical workshop supports teachers to explore AI as a creative material and thinking partner, not a replacement.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s4-4" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">AI as a creative material and thinking partner, not a replacement.</div></div>
+  </div>
 
-  <details class="session-card" data-track="pedagogy">
-    <summary>
+  <div class="session-card" data-track="pedagogy" data-reveal data-reveal-delay="5">
+    <div class="card-header">
       <span class="track-badge pedagogy">Pedagogy</span>
       <div class="session-info">
-        <div class="session-title">AI in a Primary Setting: Tactics and Strategy for Success</div>
+        <div class="session-title">AI in a Primary Setting: Tactics and Strategy</div>
         <div class="session-meta"><img src="Headshots/sacha-van-straten.jpg" alt="" loading="lazy"> <a href="#speaker/sacha-van-straten" data-speaker="sacha-van-straten">Sacha van Straten</a></div>
       </div>
       <span class="session-room">IT Lab 02</span>
-    </summary>
-    <div class="session-detail">This session explores the strategic integration of technology in EYFS and Primary environments, using AI to reframe assessment and learning outcomes while maintaining the integrity of early years pedagogy.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s4-5" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Strategic integration of technology in EYFS and Primary, maintaining the integrity of early years pedagogy.</div></div>
+  </div>
 
-  <details class="session-card" data-track="pedagogy">
-    <summary>
+  <div class="session-card" data-track="pedagogy" data-reveal data-reveal-delay="6">
+    <div class="card-header">
       <span class="track-badge pedagogy">Pedagogy</span>
       <div class="session-info">
         <div class="session-title">Policy to Classroom: Protecting Student Agency</div>
         <div class="session-meta"><img src="Headshots/daire-ni-uanachain.jpg" alt="" loading="lazy"> <a href="#speaker/daire-ni-uanachain" data-speaker="daire-ni-uanachain">Daire Maria Ni Uanachain</a></div>
       </div>
       <span class="session-room">Math 4</span>
-    </summary>
-    <div class="session-detail">This interactive workshop explores curriculum architecture through governance, pedagogy, and assessment, helping attendees diagnose where student agency is lost and sketch a redesign.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s4-6" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Diagnose where student agency is lost and sketch a redesign scalable to both Primary and Secondary.</div></div>
+  </div>
 
-  <details class="session-card" data-track="safeguarding">
-    <summary>
+  <div class="session-card" data-track="safeguarding" data-reveal data-reveal-delay="7">
+    <div class="card-header">
       <span class="track-badge safeguarding">Safeguarding</span>
       <div class="session-info">
-        <div class="session-title">Inclusion by Design: AI and Everyday Tools for Differentiation</div>
+        <div class="session-title">Inclusion by Design: AI for Differentiation</div>
         <div class="session-meta"><img src="Headshots/david-curran.jpg" alt="" loading="lazy"> <a href="#speaker/david-curran" data-speaker="david-curran">David Curran</a></div>
       </div>
       <span class="session-room">Humanities 4</span>
-    </summary>
-    <div class="session-detail">This practical session demonstrates how tools such as text-to-speech, dictation, translation, and AI-assisted planning can reduce barriers and increase learner independence.</div>
-  </details>
+      <button class="fav-btn" data-fav-id="s4-7" aria-label="Save"><svg viewBox="0 0 24 24"></svg></button>
+    </div>
+    <div class="session-body"><div class="session-body-inner">Text-to-speech, dictation, translation, and AI-assisted planning to reduce barriers and increase independence.</div></div>
+  </div>
 
   <!-- 15:30 Break -->
-  <div class="time-slot-header" data-start="930" data-end="945">
-    15:30 &ndash; 15:45 <span class="slot-label">Break</span>
-  </div>
-  <div class="banner">Afternoon Refreshments</div>
+  <div class="time-slot-header" data-start="930" data-end="945" data-reveal>15:30 &ndash; 15:45 <span class="slot-label">Break</span></div>
+  <div class="banner" data-reveal>Afternoon Refreshments</div>
 
   <!-- 15:45 Closing Keynote -->
-  <div class="time-slot-header" data-start="945" data-end="990">
-    15:45 &ndash; 16:30 <span class="slot-label">Closing Keynote</span>
+  <div class="time-slot-header" data-start="945" data-end="990" data-reveal>15:45 &ndash; 16:30 <span class="slot-label">Closing Keynote</span></div>
+  <div class="keynote-card" data-reveal>
+    <span class="keynote-label">Keynote</span>
+    <div class="keynote-title">AI as a Catalyst for Education Reform</div>
+    <div class="keynote-speaker">
+      <img src="Headshots/al-kingsley.jpg" alt="" loading="lazy">
+      <a href="#speaker/al-kingsley" data-speaker="al-kingsley">Al Kingsley MBE</a>
+    </div>
+    <div class="keynote-detail">Al Kingsley highlights how AI can serve as a catalyst for education reform. Challenging yet light-hearted, offering a visionary look at the future of leadership in the digital age.</div>
+    <button class="fav-btn" data-fav-id="keynote-2" aria-label="Save session"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></svg></button>
   </div>
-  <details class="session-card" data-track="strategy">
-    <summary>
-      <span class="track-badge keynote">Keynote</span>
-      <div class="session-info">
-        <div class="session-title">AI as a Catalyst for Education Reform</div>
-        <div class="session-meta"><img src="Headshots/al-kingsley.jpg" alt="" loading="lazy"> <a href="#speaker/al-kingsley" data-speaker="al-kingsley">Al Kingsley MBE</a></div>
-      </div>
-    </summary>
-    <div class="session-detail">Al Kingsley rounds off the day by highlighting how AI can serve as a catalyst for education reform and a much-overdue prompt for challenge within our schools. This big-picture session is designed to be challenging yet light-hearted, offering a visionary look at the future of leadership in the digital age.</div>
-  </details>
 
   <!-- 16:30 Close -->
-  <div class="time-slot-header" data-start="990" data-end="1080">
-    16:30 <span class="slot-label">Close</span>
-  </div>
-  <div class="banner">Closing &amp; Networking Drinks</div>
+  <div class="time-slot-header" data-start="990" data-end="1080" data-reveal>16:30 <span class="slot-label">Close</span></div>
+  <div class="banner" data-reveal>Closing &amp; Networking Drinks</div>
 
 </main>
 
@@ -491,105 +506,25 @@
 <!-- MAP -->
 <!-- ============================================================ -->
 <section id="map" class="view">
-  <p class="map-intro">Tap a room to see its workshops and schedule.</p>
-  <div class="map-container">
+  <p class="map-intro" data-reveal>Tap a room to see its full workshop schedule.</p>
+  <div class="map-container" data-reveal>
     <svg viewBox="0 0 1080 620" class="venue-map" aria-label="Venue floor plan">
-      <defs>
-        <linearGradient id="roomGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" class="room-grad-start"/>
-          <stop offset="100%" class="room-grad-end"/>
-        </linearGradient>
-        <filter id="roomShadow">
-          <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity=".08"/>
-        </filter>
-      </defs>
-
-      <!-- Corridor / floor background -->
       <rect x="0" y="0" width="1080" height="620" rx="16" class="map-floor"/>
-
-      <!-- Top row rooms -->
-      <g class="map-room" data-room="Social Sciences 1">
-        <rect x="30" y="25" width="180" height="110" rx="10" class="room-rect room-inactive"/>
-        <text x="120" y="72" class="room-label">Social Sciences</text>
-        <text x="120" y="96" class="room-label">1</text>
-      </g>
-
-      <g class="map-room" data-room="Refreshments">
-        <rect x="285" y="75" width="150" height="60" rx="10" class="room-rect room-utility"/>
-        <text x="360" y="112" class="room-label-sm">Refreshments</text>
-      </g>
-
-      <g class="map-room" data-room="Math 4">
-        <rect x="460" y="25" width="130" height="110" rx="10" class="room-rect room-active"/>
-        <text x="525" y="72" class="room-label">Math 4</text>
-        <circle cx="523" cy="105" r="4" class="room-dot"/>
-      </g>
-
-      <g class="map-room" data-room="Humanities 4">
-        <rect x="610" y="25" width="140" height="110" rx="10" class="room-rect room-active"/>
-        <text x="680" y="72" class="room-label">Humanities 4</text>
-        <circle cx="678" cy="105" r="4" class="room-dot"/>
-      </g>
-
-      <g class="map-room" data-room="IT Lab 01">
-        <rect x="810" y="25" width="120" height="110" rx="10" class="room-rect room-active"/>
-        <text x="870" y="72" class="room-label">IT Lab 01</text>
-        <circle cx="868" cy="105" r="4" class="room-dot"/>
-      </g>
-
-      <g class="map-room" data-room="IT Lab 02">
-        <rect x="950" y="25" width="100" height="110" rx="10" class="room-rect room-active"/>
-        <text x="1000" y="72" class="room-label">IT Lab 02</text>
-        <circle cx="998" cy="105" r="4" class="room-dot"/>
-      </g>
-
-      <!-- Corridor labels -->
+      <g class="map-room" data-room="Social Sciences 1"><rect x="30" y="25" width="180" height="110" rx="10" class="room-rect room-inactive"/><text x="120" y="72" class="room-label">Social Sciences</text><text x="120" y="96" class="room-label">1</text></g>
+      <g class="map-room" data-room="Refreshments"><rect x="285" y="75" width="150" height="60" rx="10" class="room-rect room-utility"/><text x="360" y="112" class="room-label-sm">Refreshments</text></g>
+      <g class="map-room" data-room="Math 4"><rect x="460" y="25" width="130" height="110" rx="10" class="room-rect room-active"/><text x="525" y="72" class="room-label">Math 4</text><circle cx="523" cy="105" r="4" class="room-dot"/></g>
+      <g class="map-room" data-room="Humanities 4"><rect x="610" y="25" width="140" height="110" rx="10" class="room-rect room-active"/><text x="680" y="72" class="room-label">Humanities 4</text><circle cx="678" cy="105" r="4" class="room-dot"/></g>
+      <g class="map-room" data-room="IT Lab 01"><rect x="810" y="25" width="120" height="110" rx="10" class="room-rect room-active"/><text x="870" y="72" class="room-label">IT Lab 01</text><circle cx="868" cy="105" r="4" class="room-dot"/></g>
+      <g class="map-room" data-room="IT Lab 02"><rect x="950" y="25" width="100" height="110" rx="10" class="room-rect room-active"/><text x="1000" y="72" class="room-label">IT Lab 02</text><circle cx="998" cy="105" r="4" class="room-dot"/></g>
       <text x="540" y="330" class="corridor-label">Main Corridor</text>
-
-      <!-- Assembly Hall -->
-      <g class="map-room" data-room="Assembly Hall">
-        <rect x="820" y="290" width="230" height="190" rx="12" class="room-rect room-keynote"/>
-        <text x="935" y="380" class="room-label-lg">Assembly</text>
-        <text x="935" y="410" class="room-label-lg">Hall</text>
-        <text x="935" y="440" class="room-sublabel">Keynotes</text>
-        <circle cx="933" cy="465" r="4" class="room-dot"/>
-      </g>
-
-      <!-- Bottom row rooms -->
-      <g class="map-room" data-room="Social Sciences 3">
-        <rect x="100" y="485" width="160" height="110" rx="10" class="room-rect room-active"/>
-        <text x="180" y="533" class="room-label">Social Sciences</text>
-        <text x="180" y="557" class="room-label">3</text>
-        <circle cx="178" cy="575" r="4" class="room-dot"/>
-      </g>
-
-      <g class="map-room" data-room="Social Sciences 2">
-        <rect x="280" y="485" width="160" height="110" rx="10" class="room-rect room-active"/>
-        <text x="360" y="533" class="room-label">Social Sciences</text>
-        <text x="360" y="557" class="room-label">2</text>
-        <circle cx="358" cy="575" r="4" class="room-dot"/>
-      </g>
-
-      <g class="map-room" data-room="Math 5">
-        <rect x="510" y="485" width="130" height="110" rx="10" class="room-rect room-active"/>
-        <text x="575" y="540" class="room-label">Math 5</text>
-        <circle cx="573" cy="570" r="4" class="room-dot"/>
-      </g>
-
-      <g class="map-room" data-room="Math 6">
-        <rect x="660" y="485" width="130" height="110" rx="10" class="room-rect room-active"/>
-        <text x="725" y="540" class="room-label">Math 6</text>
-        <circle cx="723" cy="570" r="4" class="room-dot"/>
-      </g>
-
-      <!-- Entrance arrows (decorative) -->
-      <line x1="15" y1="310" x2="60" y2="310" class="map-arrow"/>
-      <polygon points="60,300 80,310 60,320" class="map-arrow-head"/>
-      <text x="15" y="340" class="entrance-label">Entrance</text>
+      <g class="map-room" data-room="Assembly Hall"><rect x="820" y="290" width="230" height="190" rx="12" class="room-rect room-keynote"/><text x="935" y="380" class="room-label-lg">Assembly</text><text x="935" y="410" class="room-label-lg">Hall</text><text x="935" y="440" class="room-sublabel">Keynotes</text><circle cx="933" cy="465" r="4" class="room-dot"/></g>
+      <g class="map-room" data-room="Social Sciences 3"><rect x="100" y="485" width="160" height="110" rx="10" class="room-rect room-active"/><text x="180" y="533" class="room-label">Social Sciences</text><text x="180" y="557" class="room-label">3</text><circle cx="178" cy="575" r="4" class="room-dot"/></g>
+      <g class="map-room" data-room="Social Sciences 2"><rect x="280" y="485" width="160" height="110" rx="10" class="room-rect room-active"/><text x="360" y="533" class="room-label">Social Sciences</text><text x="360" y="557" class="room-label">2</text><circle cx="358" cy="575" r="4" class="room-dot"/></g>
+      <g class="map-room" data-room="Math 5"><rect x="510" y="485" width="130" height="110" rx="10" class="room-rect room-active"/><text x="575" y="540" class="room-label">Math 5</text><circle cx="573" cy="570" r="4" class="room-dot"/></g>
+      <g class="map-room" data-room="Math 6"><rect x="660" y="485" width="130" height="110" rx="10" class="room-rect room-active"/><text x="725" y="540" class="room-label">Math 6</text><circle cx="723" cy="570" r="4" class="room-dot"/></g>
+      <line x1="15" y1="310" x2="60" y2="310" class="map-arrow"/><polygon points="60,300 80,310 60,320" class="map-arrow-head"/><text x="15" y="340" class="entrance-label">Entrance</text>
     </svg>
   </div>
-
-  <!-- Room detail panel (slides up on tap) -->
   <div id="room-panel" class="room-panel" aria-hidden="true">
     <div class="room-panel-backdrop"></div>
     <div class="room-panel-sheet">
@@ -604,185 +539,166 @@
 <!-- SPEAKERS -->
 <!-- ============================================================ -->
 <section id="speakers" class="view">
-  <p class="speakers-intro">Tap any speaker to explore their full biography and sessions.</p>
+  <p class="speakers-intro" data-reveal>Tap any speaker to explore their biography and sessions.</p>
   <div class="speakers-grid">
 
-    <div class="speaker-card" data-slug="rose-luckin"
-      data-speaker="rose-luckin"
-      data-bio="Professor Rose Luckin is an internationally recognised authority on the future of education and AI. With over 30 years of experience, she serves as Professor Emerita at University College London and Founder of Educate Ventures Research (EVR). Her pioneering work has been honoured with the Bett Outstanding Achievement Award in 2025 and the ISTE Impact Award. A prolific author, her books include <em>Machine Learning and Human Intelligence</em> and <em>AI for Schoolteachers</em>. Rose is a sought-after media commentator and monthly columnist for the <em>Times Educational Supplement</em>."
-      data-sessions='[{"time":"09:30","title":"Innovation with Integrity (Keynote)","room":"Main Hall","track":"keynote","trackLabel":"Keynote"},{"time":"14:00","title":"From Strategy to Classroom","room":"Math 4","track":"strategy","trackLabel":"Strategy"}]'>
+    <div class="speaker-card" data-slug="rose-luckin" data-speaker="rose-luckin" data-reveal data-reveal-delay="1"
+      data-bio="Professor Rose Luckin is an internationally recognised authority on the future of education and AI. With over 30 years of experience, she serves as Professor Emerita at University College London and Founder of Educate Ventures Research. Her work has been honoured with the Bett Outstanding Achievement Award (2025) and the ISTE Impact Award. Author of <em>Machine Learning and Human Intelligence</em> and <em>AI for Schoolteachers</em>."
+      data-sessions='[{"time":"09:30","title":"Innovation with Integrity (Keynote)","room":"Assembly Hall","track":"keynote","trackLabel":"Keynote"},{"time":"14:00","title":"From Strategy to Classroom","room":"Math 4","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/rose-luckin.jpg" alt="Rose Luckin" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Professor Rose Luckin</span>
       <span class="speaker-affiliation">UCL / Educate Ventures</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="al-kingsley"
-      data-speaker="al-kingsley"
-      data-bio="Al Kingsley MBE is an internationally recognised leader in educational technology, school governance, and digital strategy with over 30 years of sector experience. As Group CEO of NetSupport, he has been instrumental in developing software used by millions of learners globally. Al is Chair of a large Multi-Academy Trust and BESA. His most recent book is <em>The Awkward Questions in Education</em>. He was awarded an MBE in 2024 for outstanding services to education."
-      data-sessions='[{"time":"15:45","title":"AI as a Catalyst for Education Reform (Keynote)","room":"Main Hall","track":"keynote","trackLabel":"Keynote"}]'>
+    <div class="speaker-card" data-slug="al-kingsley" data-speaker="al-kingsley" data-reveal data-reveal-delay="2"
+      data-bio="Al Kingsley MBE is an internationally recognised leader in educational technology with over 30 years of experience. Group CEO of NetSupport, Chair of a large Multi-Academy Trust and BESA. Author of <em>The Awkward Questions in Education</em>. Awarded an MBE in 2024 for services to education."
+      data-sessions='[{"time":"15:45","title":"AI as a Catalyst for Education Reform (Keynote)","room":"Assembly Hall","track":"keynote","trackLabel":"Keynote"}]'>
       <img src="Headshots/al-kingsley.jpg" alt="Al Kingsley" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Al Kingsley MBE</span>
       <span class="speaker-affiliation">NetSupport / BESA</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="aaron-patching"
-      data-speaker="aaron-patching"
-      data-bio="Aaron Patching is an innovative educator, digital leader, and certified Canva Trainer with 13 years of diverse experience in teaching, senior leadership, and business. As Lead Practitioner of Digital Learning and EdTech trainer, he specialises in utilising AI to drive educational change and enhance teaching and learning by providing impactful CPD for educators across the country. He is also passionate about inspiring the next generation of resilient problem solvers through his work in design and technology."
-      data-sessions='[{"time":"11:45","title":"Canva Code \u2013 Build your own apps","room":"IT Lab 02","track":"creativity","trackLabel":"Creativity"},{"time":"14:00","title":"Canva Code \u2013 Build your own apps","room":"IT Lab 02","track":"creativity","trackLabel":"Creativity"}]'>
+    <div class="speaker-card" data-slug="aaron-patching" data-speaker="aaron-patching" data-reveal data-reveal-delay="3"
+      data-bio="Aaron Patching is an innovative educator, digital leader, and certified Canva Trainer with 13 years of experience. As Lead Practitioner of Digital Learning, he specialises in utilising AI to drive educational change and enhance teaching and learning."
+      data-sessions='[{"time":"11:45","title":"Canva Code","room":"IT Lab 02","track":"creativity","trackLabel":"Creativity"},{"time":"14:00","title":"Canva Code","room":"IT Lab 02","track":"creativity","trackLabel":"Creativity"}]'>
       <img src="Headshots/aaron-patching.jpg" alt="Aaron Patching" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Aaron Patching</span>
       <span class="speaker-affiliation">Digital Learning Lead</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="amelia-king"
-      data-speaker="amelia-king"
-      data-bio="Amelia King works at the intersection of AI, metacognition, critical thinking, and creativity. She helps educators cut through the noise of AI hype to design strategies that genuinely support human thinking in an automated age. Her workshops focus on deeper metacognition, critical thinking, and creativity, equipping teachers with practical techniques they can use immediately."
-      data-sessions='[{"time":"10:30","title":"Thoughtful Use of AI in the Classroom","room":"Social Sciences 3","track":"pedagogy","trackLabel":"Pedagogy"},{"time":"14:00","title":"Thoughtful Use of AI in the Classroom","room":"Social Sciences 3","track":"pedagogy","trackLabel":"Pedagogy"}]'>
+    <div class="speaker-card" data-slug="amelia-king" data-speaker="amelia-king" data-reveal data-reveal-delay="4"
+      data-bio="Amelia King works at the intersection of AI, metacognition, critical thinking, and creativity. She helps educators cut through AI hype to design strategies that genuinely support human thinking."
+      data-sessions='[{"time":"10:30","title":"Thoughtful Use of AI","room":"Social Sciences 3","track":"pedagogy","trackLabel":"Pedagogy"},{"time":"14:00","title":"Thoughtful Use of AI","room":"Social Sciences 3","track":"pedagogy","trackLabel":"Pedagogy"}]'>
       <img src="Headshots/amelia-king.jpg" alt="Amelia King" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Amelia King</span>
       <span class="speaker-affiliation">AI &amp; Metacognition</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="ben-whitaker"
-      data-speaker="ben-whitaker"
-      data-bio="Ben Whitaker is a UK-based education consultant, speaker, and co-director of Edufuturists. He supports organisations, MATs, and FE colleges with AI audits, staff training, and leadership strategy. Ben contributes to national conversations on AI in education and regularly advises senior leaders on policy, governance, and operational impact. He is the host of the <em>Edufuturists</em> podcast and provides resources for future-ready learning via theideasguy.io."
-      data-sessions='[{"time":"10:30","title":"Critical Thinking with AI","room":"Humanities 4","track":"strategy","trackLabel":"Strategy"},{"time":"11:45","title":"Smarter Tools, Wider Doors: AI + UDL","room":"Humanities 4","track":"safeguarding","trackLabel":"Safeguarding"},{"time":"14:00","title":"Critical Thinking with AI","room":"Humanities 4","track":"strategy","trackLabel":"Strategy"}]'>
+    <div class="speaker-card" data-slug="ben-whitaker" data-speaker="ben-whitaker" data-reveal data-reveal-delay="5"
+      data-bio="Ben Whitaker is a UK-based education consultant, speaker, and co-director of Edufuturists. He supports organisations, MATs, and FE colleges with AI audits, staff training, and leadership strategy. Host of the <em>Edufuturists</em> podcast."
+      data-sessions='[{"time":"10:30","title":"Critical Thinking with AI","room":"Humanities 4","track":"strategy","trackLabel":"Strategy"},{"time":"11:45","title":"Smarter Tools, Wider Doors","room":"Humanities 4","track":"safeguarding","trackLabel":"Safeguarding"},{"time":"14:00","title":"Critical Thinking with AI","room":"Humanities 4","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/ben-whitaker.jpg" alt="Ben Whitaker" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Ben Whitaker</span>
       <span class="speaker-affiliation">Edufuturists</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="chris-loveday"
-      data-speaker="chris-loveday"
-      data-bio="Chris leads strategy across finance, estates, IT, and organisational development at Barton Peveril Sixth Form College. He has spearheaded a college-wide transformation programme focused on the practical and ethical implementation of AI. Chris is also an author and researcher who bridges the gap between theory and real-world operational excellence."
+    <div class="speaker-card" data-slug="chris-loveday" data-speaker="chris-loveday" data-reveal data-reveal-delay="6"
+      data-bio="Chris leads strategy across finance, estates, IT, and organisational development at Barton Peveril Sixth Form College. He has spearheaded a college-wide AI transformation programme."
       data-sessions='[{"time":"10:30","title":"AI for Operational Efficiency","room":"Social Sciences 2","track":"strategy","trackLabel":"Strategy"},{"time":"14:00","title":"AI for Operational Efficiency","room":"Social Sciences 2","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/chris-loveday.jpg" alt="Chris Loveday" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Chris Loveday</span>
       <span class="speaker-affiliation">Barton Peveril College</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="daire-ni-uanachain"
-      data-speaker="daire-ni-uanachain"
-      data-bio="Daire is an award-nominated educator, researcher, and EdTech strategist who leads initiatives focused on innovative teaching and human-centred, democratic AI integration. She collaborates with European universities on research into generative AI and digital literacy, bridging the gap between pedagogy, technology, and governance. Her work focuses on civic participation, youth empowerment, and protecting student agency."
-      data-sessions='[{"time":"10:30","title":"Policy to Classroom: Protecting Student Agency","room":"Math 4","track":"pedagogy","trackLabel":"Pedagogy"},{"time":"11:45","title":"Policy to Classroom: Protecting Student Agency","room":"Math 4","track":"pedagogy","trackLabel":"Pedagogy"},{"time":"14:45","title":"Policy to Classroom: Protecting Student Agency","room":"Math 4","track":"pedagogy","trackLabel":"Pedagogy"}]'>
+    <div class="speaker-card" data-slug="daire-ni-uanachain" data-speaker="daire-ni-uanachain" data-reveal data-reveal-delay="7"
+      data-bio="Daire is an award-nominated educator, researcher, and EdTech strategist focused on innovative teaching and human-centred AI integration. She collaborates with European universities on generative AI and digital literacy research."
+      data-sessions='[{"time":"10:30","title":"Policy to Classroom","room":"Math 4","track":"pedagogy","trackLabel":"Pedagogy"},{"time":"11:45","title":"Policy to Classroom","room":"Math 4","track":"pedagogy","trackLabel":"Pedagogy"},{"time":"14:45","title":"Policy to Classroom","room":"Math 4","track":"pedagogy","trackLabel":"Pedagogy"}]'>
       <img src="Headshots/daire-ni-uanachain.jpg" alt="Daire Maria Ni Uanachain" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Daire Maria Ni Uanachain</span>
       <span class="speaker-affiliation">EdTech Strategist</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="david-curran"
-      data-speaker="david-curran"
-      data-bio="David Curran is Head of Careers and Assistive Technology at Moon Hall School Reigate (a specialist school for dyslexia) and an independent consultant at the intersection of inclusive education and AI. With over 24 years of experience, he specialises in translating research and emerging technologies into practical school practice. David leads the design of AI-supported chatbots for neurodivergent learners and is an AT Scholar for ATIA 2026."
+    <div class="speaker-card" data-slug="david-curran" data-speaker="david-curran" data-reveal data-reveal-delay="1"
+      data-bio="David Curran is Head of Careers and Assistive Technology at Moon Hall School Reigate and a consultant at the intersection of inclusive education and AI. AT Scholar for ATIA 2026."
       data-sessions='[{"time":"10:30","title":"Responsible Chatbot Design","room":"IT Lab 01","track":"safeguarding","trackLabel":"Safeguarding"},{"time":"11:45","title":"Inclusion by Design","room":"IT Lab 01","track":"safeguarding","trackLabel":"Safeguarding"},{"time":"14:00","title":"Responsible Chatbot Design","room":"IT Lab 01","track":"safeguarding","trackLabel":"Safeguarding"},{"time":"14:45","title":"Inclusion by Design","room":"Humanities 4","track":"safeguarding","trackLabel":"Safeguarding"}]'>
       <img src="Headshots/david-curran.jpg" alt="David Curran" class="speaker-photo" loading="lazy">
       <span class="speaker-name">David Curran</span>
       <span class="speaker-affiliation">Moon Hall School</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="emma-darcy"
-      data-speaker="emma-darcy"
-      data-bio="Emma Darcy is Director of Tech for Learning at Denbigh High School and a Pearson National Teaching Award winner. Named in the 2026 Bett UK EdTech 10 List for her contributions to the sector. Emma is a Trustee for Apps for Good and a founder of the Digital Futures Group. She specialises in whole-school digital strategy, ensuring technology serves as an equaliser."
+    <div class="speaker-card" data-slug="emma-darcy" data-speaker="emma-darcy" data-reveal data-reveal-delay="2"
+      data-bio="Emma Darcy is Director of Tech for Learning at Denbigh High School and a Pearson National Teaching Award winner. Named in the 2026 Bett UK EdTech 10 List. Trustee for Apps for Good and founder of the Digital Futures Group."
       data-sessions='[{"time":"10:30","title":"AI \u2013 Safe into Safeguarding?","room":"Math 5","track":"safeguarding","trackLabel":"Safeguarding"},{"time":"14:00","title":"AI \u2013 Safe into Safeguarding?","room":"Math 5","track":"safeguarding","trackLabel":"Safeguarding"}]'>
       <img src="Headshots/emma-darcy.jpg" alt="Emma Darcy" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Emma Darcy</span>
       <span class="speaker-affiliation">Denbigh High School</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="ioannis-anapliotis"
-      data-speaker="ioannis-anapliotis"
-      data-bio="Ioannis Anapliotis is a practitioner-leader in the meaningful integration of Artificial Intelligence in education. Based in Athens, he designs teacher-ready AI literacy programmes, safe GenAI classroom practices, and curriculum-aligned learning experiences where students build, test, and critically evaluate AI systems. His work blends pedagogy, innovation, and ethics, turning AI from a simple &ldquo;tool&rdquo; into a structured learning journey."
+    <div class="speaker-card" data-slug="ioannis-anapliotis" data-speaker="ioannis-anapliotis" data-reveal data-reveal-delay="3"
+      data-bio="Ioannis Anapliotis is a practitioner-leader in meaningful AI integration in education. Based in Athens, he designs teacher-ready AI literacy programmes and curriculum-aligned learning experiences."
       data-sessions='[{"time":"14:00","title":"The Archimedes Ecosystem","room":"Math 6","track":"pedagogy","trackLabel":"Pedagogy"}]'>
       <img src="Headshots/ioannis-anapliotis.jpg" alt="Ioannis Anapliotis" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Ioannis Anapliotis</span>
       <span class="speaker-affiliation">AI Literacy Educator</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="james-garnett"
-      data-speaker="james-garnett"
-      data-bio="James Garnett has a distinguished 30-year career in digital education and cyber security. He previously led the EdTech Demonstrator Programme, a national initiative supporting schools in using technology effectively. James is a Trustee for Apps for Good and a founder of the Digital Futures Group. His expertise lies in aligning technical infrastructure and security with pedagogical goals."
+    <div class="speaker-card" data-slug="james-garnett" data-speaker="james-garnett" data-reveal data-reveal-delay="4"
+      data-bio="James Garnett has a distinguished 30-year career in digital education and cyber security. He previously led the EdTech Demonstrator Programme. Trustee for Apps for Good and founder of the Digital Futures Group."
       data-sessions='[{"time":"10:30","title":"AI \u2013 Safe into Safeguarding?","room":"Math 5","track":"safeguarding","trackLabel":"Safeguarding"},{"time":"14:00","title":"AI \u2013 Safe into Safeguarding?","room":"Math 5","track":"safeguarding","trackLabel":"Safeguarding"}]'>
       <img src="Headshots/james-garnett.jpg" alt="James Garnett" class="speaker-photo" loading="lazy">
       <span class="speaker-name">James Garnett</span>
       <span class="speaker-affiliation">Digital Futures Group</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="kevin-loi-heng"
-      data-speaker="kevin-loi-heng"
-      data-bio="Kevin Loi-Heng works at the intersection of technology, education, and ethics, supporting leaders across the UK, Africa, and Europe. An academic researcher formerly with the Computational Philosophy Lab at Northeastern, Kevin has delivered keynote talks at the United Nations and various international technology summits. He is dedicated to supporting global initiatives that bridge complex tech and ethical practice."
+    <div class="speaker-card" data-slug="kevin-loi-heng" data-speaker="kevin-loi-heng" data-reveal data-reveal-delay="5"
+      data-bio="Kevin Loi-Heng works at the intersection of technology, education, and ethics. Formerly with the Computational Philosophy Lab at Northeastern, he has delivered keynotes at the United Nations."
       data-sessions='[{"time":"11:45","title":"AI for Education Optimisation","room":"Math 6","track":"strategy","trackLabel":"Strategy"},{"time":"14:45","title":"AI for Education Optimisation","room":"Math 6","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/kevin-loi-heng.jpg" alt="Kevin Loi-Heng" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Kevin Loi-Heng</span>
       <span class="speaker-affiliation">Avalon Insights</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="luke-harris"
-      data-speaker="luke-harris"
-      data-bio="Luke is an educational leader specialising in digital transformation and computing strategy within the independent sector. With 16 years of industry experience, he brings a distinctive perspective by translating real-world technical expertise into impactful classroom practice. Luke is a regular contributor to national discussions on AI bias and safeguarding, championing ethical use of technology in schools."
+    <div class="speaker-card" data-slug="luke-harris" data-speaker="luke-harris" data-reveal data-reveal-delay="6"
+      data-bio="Luke is an educational leader specialising in digital transformation and computing strategy. With 16 years of industry experience, he translates real-world technical expertise into classroom practice."
       data-sessions='[{"time":"11:45","title":"90-Day AI Action Plan","room":"Social Sciences 2","track":"strategy","trackLabel":"Strategy"},{"time":"14:45","title":"90-Day AI Action Plan","room":"Social Sciences 2","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/luke-harris.jpg" alt="Luke Harris" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Luke Harris</span>
       <span class="speaker-affiliation">Digital Transformation</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="matt-woodruff"
-      data-speaker="matt-woodruff"
-      data-bio="Matt Woodruff is the founder of Open Education AI and chairs its Technical Authority, providing open-source data analytics to over 600 schools. He leads Edequity AI in developing the Marginal Gains platform, an AI-powered suite supporting school leaders. With 27 years of experience in EdTech, Matt is Chair of Trustees at The Kite Academy Trust and an advisor to the UK DfE on AI-assisted school governance. He recently submitted his PhD thesis on ethical and explainable AI for contextual safeguarding."
-      data-sessions='[{"time":"11:45","title":"Building an Education Data Spine","room":"Math 5","track":"strategy","trackLabel":"Strategy"},{"time":"14:45","title":"AI Governance and Ethics Challenge","room":"Math 5","track":"strategy","trackLabel":"Strategy"}]'>
+    <div class="speaker-card" data-slug="matt-woodruff" data-speaker="matt-woodruff" data-reveal data-reveal-delay="7"
+      data-bio="Matt Woodruff is the founder of Open Education AI, providing open-source analytics to 600+ schools. He leads Edequity AI and recently submitted his PhD on ethical AI for contextual safeguarding."
+      data-sessions='[{"time":"11:45","title":"Education Data Spine","room":"Math 5","track":"strategy","trackLabel":"Strategy"},{"time":"14:45","title":"AI Governance &amp; Ethics","room":"Math 5","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/matt-woodruff.jpg" alt="Matt Woodruff" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Matt Woodruff</span>
       <span class="speaker-affiliation">Open Education AI</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="sacha-van-straten"
-      data-speaker="sacha-van-straten"
-      data-bio="Sacha is an award-winning communications specialist, educator, and change agent with a track record of managing digital transformation. After a successful career in radio, TV, and interactive media, Sacha transitioned into education, where he explores how digital strategies can improve learning through AI, curiosity, and metacognitive capture. He holds an MA in Computing Education from King&rsquo;s College London. Head of Digital Innovation at St Catherine&rsquo;s British School, Athens."
+    <div class="speaker-card" data-slug="sacha-van-straten" data-speaker="sacha-van-straten" data-reveal data-reveal-delay="1"
+      data-bio="Sacha is an award-winning communications specialist and change agent. After a career in radio, TV, and interactive media, he transitioned into education. Head of Digital Innovation at St Catherine&rsquo;s British School, Athens."
       data-sessions='[{"time":"10:30","title":"AI in a Primary Setting","room":"IT Lab 02","track":"pedagogy","trackLabel":"Pedagogy"},{"time":"14:45","title":"AI in a Primary Setting","room":"IT Lab 02","track":"pedagogy","trackLabel":"Pedagogy"}]'>
       <img src="Headshots/sacha-van-straten.jpg" alt="Sacha van Straten" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Sacha van Straten</span>
       <span class="speaker-affiliation">St Catherine&rsquo;s British School</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="thomas-akintan"
-      data-speaker="thomas-akintan"
-      data-bio="Thomas Akintan is Co-founder of Avalon Insights, a research-led AI training and consulting company. He has extensive experience implementing AI and software for multinational companies across the UK, EMEA, and North America. Thomas focuses on upskilling teams in ethical and human-centred AI adoption, having worked with institutions such as EDHEC International Business School and Brunel University."
+    <div class="speaker-card" data-slug="thomas-akintan" data-speaker="thomas-akintan" data-reveal data-reveal-delay="2"
+      data-bio="Thomas Akintan is Co-founder of Avalon Insights, a research-led AI training and consulting company with experience across the UK, EMEA, and North America."
       data-sessions='[{"time":"11:45","title":"AI for Education Optimisation","room":"Math 6","track":"strategy","trackLabel":"Strategy"},{"time":"14:45","title":"AI for Education Optimisation","room":"Math 6","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/thomas-akintan.jpg" alt="Thomas Akintan" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Thomas Akintan</span>
       <span class="speaker-affiliation">Avalon Insights</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
-    <div class="speaker-card" data-slug="trudi-barrow"
-      data-speaker="trudi-barrow"
-      data-bio="Trudi Barrow is an award-winning design educator widely recognised for her work exploring AI in design education. She works with schools and colleges across the UK to support curriculum design, professional development, and the evolving role of technology. Trudi is an adviser at CLEAPSS and editor of <em>Futureminds</em> digital magazine. With a background in theatre design from RADA and the National Theatre, she brings a strong creative lens to her work."
+    <div class="speaker-card" data-slug="trudi-barrow" data-speaker="trudi-barrow" data-reveal data-reveal-delay="3"
+      data-bio="Trudi Barrow is an award-winning design educator. Adviser at CLEAPSS, editor of <em>Futureminds</em> digital magazine. Background in theatre design from RADA and the National Theatre."
       data-sessions='[{"time":"11:45","title":"Creativity in the Age of AI","room":"Social Sciences 3","track":"creativity","trackLabel":"Creativity"},{"time":"14:45","title":"Creativity in the Age of AI","room":"Social Sciences 3","track":"creativity","trackLabel":"Creativity"}]'>
       <img src="Headshots/trudi-barrow.jpg" alt="Trudi Barrow" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Trudi Barrow</span>
       <span class="speaker-affiliation">Design Educator / CLEAPSS</span>
-      <span class="arrow-hint">View profile &rarr;</span>
+      <span class="arrow-hint">View profile</span>
     </div>
 
   </div>
 </section>
 
-<!-- ============================================================ -->
-<!-- SPEAKER DETAIL PAGE (dynamic) -->
-<!-- ============================================================ -->
+<!-- Speaker Detail (dynamic) -->
 <div id="speaker-page" class="speaker-page"></div>
 
 <!-- ============================================================ -->
@@ -790,77 +706,35 @@
 <!-- ============================================================ -->
 <section id="info" class="view info-section">
 
-  <h2>Media Partner</h2>
-  <div class="media-card">
+  <h2 data-reveal>Media Partner</h2>
+  <div class="media-card" data-reveal>
     <img src="Headshots/alex-gray.jpg" alt="Alex Gray" loading="lazy">
     <div class="media-info">
       <strong>Alex Gray</strong>
-      Creator of <em>The International Classroom</em> podcast and founder of DEEP Professional. Head of Sixth Form at Arcadia School, Dubai. Co-hosts &ldquo;Show Us Your Stack&rdquo; and developer of Duxa, the all-in-one software for private tutors.
+      Creator of <em>The International Classroom</em> podcast and founder of DEEP Professional. Head of Sixth Form at Arcadia School, Dubai.
     </div>
   </div>
 
-  <h2>Sponsors &amp; Partners</h2>
+  <h2 data-reveal>Sponsors &amp; Partners</h2>
   <div class="sponsor-grid">
-    <div class="sponsor-card">
-      <strong>Open Education AI</strong>
-      <p>Sector-led non-profit providing open-source data analytics to 600+ schools.</p>
-    </div>
-    <div class="sponsor-card">
-      <strong>Edequity AI</strong>
-      <p>AI-powered analytics and strategic planning for Multi-Academy Trusts.</p>
-    </div>
-    <div class="sponsor-card">
-      <strong>Cambridge School of Bucharest</strong>
-      <p>Leading British international school offering EYFS through A Levels and IB.</p>
-    </div>
-    <div class="sponsor-card">
-      <strong>Oak &amp; Elm Foundation</strong>
-      <p>Non-profit fostering kindness, social responsibility, and active citizenship.</p>
-    </div>
-    <div class="sponsor-card">
-      <strong>D &amp; L Cuisine</strong>
-      <p>Premium catering providing healthy, Mediterranean-inspired meals.</p>
-    </div>
-    <div class="sponsor-card">
-      <strong>DACRIS</strong>
-      <p>Leading provider of office and educational solutions in Romania.</p>
-    </div>
-    <div class="sponsor-card">
-      <strong>Mindjoy</strong>
-      <p>AI-first learning platform for STEM mastery and AI fluency.</p>
-    </div>
-    <div class="sponsor-card">
-      <strong>Avalon Insights</strong>
-      <p>Research-led AI training and consulting for ethical EdTech adoption.</p>
-    </div>
-    <div class="sponsor-card">
-      <strong>Toddle</strong>
-      <p>All-in-one teaching and learning platform for IB and independent schools.</p>
-    </div>
-    <div class="sponsor-card">
-      <strong>Everyway</strong>
-      <p>Inclusion and accessibility specialists using Universal Design for Learning.</p>
-    </div>
-    <div class="sponsor-card">
-      <strong>Canva for Education</strong>
-      <p>Professional-quality visual design tools with integrated AI for classrooms.</p>
-    </div>
-    <div class="sponsor-card">
-      <strong>COBIS</strong>
-      <p>Council of British International Schools &mdash; quality assurance for 450+ schools.</p>
-    </div>
-    <div class="sponsor-card">
-      <strong>DEEP Professional</strong>
-      <p>Teacher empowerment through professional development and AI literacy.</p>
-    </div>
-    <div class="sponsor-card">
-      <strong>BRCC</strong>
-      <p>British Romanian Chamber of Commerce &mdash; connecting tech and education.</p>
-    </div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="1"><strong>Open Education AI</strong><p>Open-source data analytics for 600+ schools.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="2"><strong>Edequity AI</strong><p>AI-powered analytics for Multi-Academy Trusts.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="3"><strong>Cambridge School of Bucharest</strong><p>Leading British international school.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="4"><strong>Oak &amp; Elm Foundation</strong><p>Fostering kindness and active citizenship.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="5"><strong>D &amp; L Cuisine</strong><p>Healthy, Mediterranean-inspired catering.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="6"><strong>DACRIS</strong><p>Office and educational solutions in Romania.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="7"><strong>Mindjoy</strong><p>AI-first STEM learning platform.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="1"><strong>Avalon Insights</strong><p>Research-led AI training and consulting.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="2"><strong>Toddle</strong><p>Teaching and learning platform for IB schools.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="3"><strong>Everyway</strong><p>Inclusion through Universal Design for Learning.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="4"><strong>Canva for Education</strong><p>Visual design tools with AI for classrooms.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="5"><strong>COBIS</strong><p>Quality assurance for 450+ international schools.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="6"><strong>DEEP Professional</strong><p>Teacher empowerment and AI literacy.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="7"><strong>BRCC</strong><p>British Romanian Chamber of Commerce.</p></div>
   </div>
 
-  <h2>Venue Rooms</h2>
-  <ul class="room-list">
+  <h2 data-reveal>Venue Rooms</h2>
+  <ul class="room-list" data-reveal>
     <li>Social Sciences 2</li>
     <li>Social Sciences 3</li>
     <li>Humanities 4</li>
