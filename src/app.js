@@ -500,8 +500,8 @@
     let scale = 1, panX = 0, panY = 0;
     let startDist = 0, startScale = 1;
     let startX = 0, startY = 0, startPanX = 0, startPanY = 0;
-    let isPanning = false;
-    const MIN_SCALE = 1, MAX_SCALE = 3.5;
+    let isPanning = false, hasMoved = false;
+    const MIN_SCALE = 1, MAX_SCALE = 3.5, TAP_THRESHOLD = 8;
 
     function clampPan() {
       const bw = mapBox.clientWidth, bh = mapBox.clientHeight;
@@ -535,8 +535,8 @@
         startPanX = panX; startPanY = panY;
         isPanning = false;
       } else if (e.touches.length === 1 && scale > 1) {
-        e.preventDefault();
         isPanning = true;
+        hasMoved = false;
         startX = e.touches[0].clientX;
         startY = e.touches[0].clientY;
         startPanX = panX; startPanY = panY;
@@ -555,10 +555,15 @@
         scale = newScale;
         applyTransform();
       } else if (e.touches.length === 1 && isPanning && scale > 1) {
-        e.preventDefault();
-        panX = startPanX + (e.touches[0].clientX - startX);
-        panY = startPanY + (e.touches[0].clientY - startY);
-        applyTransform();
+        const dx = e.touches[0].clientX - startX;
+        const dy = e.touches[0].clientY - startY;
+        if (!hasMoved && Math.abs(dx) + Math.abs(dy) > TAP_THRESHOLD) hasMoved = true;
+        if (hasMoved) {
+          e.preventDefault();
+          panX = startPanX + dx;
+          panY = startPanY + dy;
+          applyTransform();
+        }
       }
     }, { passive: false });
 
