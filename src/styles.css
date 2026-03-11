@@ -457,6 +457,13 @@ a { color: var(--c-accent); text-decoration: none; }
 .keynote-speaker a { color: rgba(255,255,255,.9); }
 .keynote-speaker a:hover { color: #fff; }
 
+.keynote-room {
+  font-size: .75rem;
+  opacity: .6;
+  margin-top: .25rem;
+  letter-spacing: .03em;
+}
+
 .keynote-detail {
   max-height: 0;
   overflow: hidden;

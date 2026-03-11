@@ -388,6 +388,7 @@
     ],
     'Assembly Hall': [
       { time: '09:30', title: 'Innovation with Integrity (Keynote)', speaker: 'Professor Rose Luckin', track: 'keynote', trackLabel: 'Keynote' },
+      { time: '12:30', title: 'Create. Code. Change.', speaker: 'Matthew Wemyss & Aaron Patching', track: 'creativity', trackLabel: 'Presentation' },
       { time: '15:45', title: 'AI as a Catalyst for Education Reform (Keynote)', speaker: 'Al Kingsley MBE', track: 'keynote', trackLabel: 'Keynote' }
     ],
     'Social Sciences 2': [
@@ -404,9 +405,9 @@
     ],
     'Humanities 4': [
       { time: '10:30', title: 'Critical Thinking with AI', speaker: 'Ben Whitaker', track: 'strategy', trackLabel: 'Strategy' },
-      { time: '11:45', title: 'Smarter Tools, Wider Doors', speaker: 'Ben Whitaker', track: 'safeguarding', trackLabel: 'Safeguarding & Inclusion' },
+      { time: '11:45', title: 'Smarter Tools, Wider Doors', speaker: 'Ben Whitaker', track: 'safeguarding', trackLabel: 'Inclusion' },
       { time: '14:00', title: 'Critical Thinking with AI', speaker: 'Ben Whitaker', track: 'strategy', trackLabel: 'Strategy' },
-      { time: '14:45', title: 'Inclusion by Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Safeguarding & Inclusion' }
+      { time: '14:45', title: 'Inclusion by Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Inclusion' }
     ],
     'Math 4': [
       { time: '10:30', title: 'Policy to Classroom', speaker: 'Daire Maria Ni Uanachain', track: 'pedagogy', trackLabel: 'Pedagogy' },
@@ -415,9 +416,9 @@
       { time: '14:45', title: 'Policy to Classroom', speaker: 'Daire Maria Ni Uanachain', track: 'pedagogy', trackLabel: 'Pedagogy' }
     ],
     'Math 5': [
-      { time: '10:30', title: 'AI \u2013 Safe into Safeguarding?', speaker: 'James Garnett & Emma Darcy', track: 'safeguarding', trackLabel: 'Safeguarding & Inclusion' },
+      { time: '10:30', title: 'AI \u2013 Safe into Safeguarding?', speaker: 'James Garnett & Emma Darcy', track: 'safeguarding', trackLabel: 'Safeguarding' },
       { time: '11:45', title: 'Education Data Spine', speaker: 'Matt Woodruff', track: 'strategy', trackLabel: 'Strategy' },
-      { time: '14:00', title: 'AI \u2013 Safe into Safeguarding?', speaker: 'James Garnett & Emma Darcy', track: 'safeguarding', trackLabel: 'Safeguarding & Inclusion' },
+      { time: '14:00', title: 'AI \u2013 Safe into Safeguarding?', speaker: 'James Garnett & Emma Darcy', track: 'safeguarding', trackLabel: 'Safeguarding' },
       { time: '14:45', title: 'AI Governance & Ethics', speaker: 'Matt Woodruff', track: 'strategy', trackLabel: 'Strategy' }
     ],
     'Math 6': [
@@ -426,9 +427,9 @@
       { time: '14:45', title: 'AI for Education Optimisation', speaker: 'Thomas Akintan & Kevin Loi-Heng', track: 'strategy', trackLabel: 'Strategy' }
     ],
     'IT Lab 01': [
-      { time: '10:30', title: 'Responsible Chatbot Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Safeguarding & Inclusion' },
-      { time: '11:45', title: 'Inclusion by Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Safeguarding & Inclusion' },
-      { time: '14:00', title: 'Responsible Chatbot Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Safeguarding & Inclusion' }
+      { time: '10:30', title: 'Responsible Chatbot Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Safeguarding' },
+      { time: '11:45', title: 'Inclusion by Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Inclusion' },
+      { time: '14:00', title: 'Responsible Chatbot Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Safeguarding' }
     ],
     'IT Lab 02': [
       { time: '10:30', title: 'AI in a Primary Setting', speaker: 'Sacha van Straten', track: 'pedagogy', trackLabel: 'Pedagogy' },
