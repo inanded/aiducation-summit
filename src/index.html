@@ -16,7 +16,6 @@
 <!-- ===== Hero Header ===== -->
 <header class="site-header">
   <img src="AIducation%20Logo%20white.png" alt="AIducation Summit" class="logo">
-  <h1>AIducation Summit</h1>
   <p class="date">Saturday 14 March 2026 &bull; Bucharest</p>
   <span class="tagline">Innovation with Integrity</span>
 </header>
@@ -24,6 +23,7 @@
 <!-- ===== Tab Bar ===== -->
 <nav class="tab-bar" role="tablist">
   <button data-tab="schedule" class="active" role="tab">Schedule</button>
+  <button data-tab="map" role="tab">Map</button>
   <button data-tab="speakers" role="tab">Speakers</button>
   <button data-tab="info" role="tab">Info</button>
 </nav>
@@ -486,6 +486,119 @@
   <div class="banner">Closing &amp; Networking Drinks</div>
 
 </main>
+
+<!-- ============================================================ -->
+<!-- MAP -->
+<!-- ============================================================ -->
+<section id="map" class="view">
+  <p class="map-intro">Tap a room to see its workshops and schedule.</p>
+  <div class="map-container">
+    <svg viewBox="0 0 1080 620" class="venue-map" aria-label="Venue floor plan">
+      <defs>
+        <linearGradient id="roomGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" class="room-grad-start"/>
+          <stop offset="100%" class="room-grad-end"/>
+        </linearGradient>
+        <filter id="roomShadow">
+          <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity=".08"/>
+        </filter>
+      </defs>
+
+      <!-- Corridor / floor background -->
+      <rect x="0" y="0" width="1080" height="620" rx="16" class="map-floor"/>
+
+      <!-- Top row rooms -->
+      <g class="map-room" data-room="Social Sciences 1">
+        <rect x="30" y="25" width="180" height="110" rx="10" class="room-rect room-inactive"/>
+        <text x="120" y="72" class="room-label">Social Sciences</text>
+        <text x="120" y="96" class="room-label">1</text>
+      </g>
+
+      <g class="map-room" data-room="Refreshments">
+        <rect x="285" y="75" width="150" height="60" rx="10" class="room-rect room-utility"/>
+        <text x="360" y="112" class="room-label-sm">Refreshments</text>
+      </g>
+
+      <g class="map-room" data-room="Math 4">
+        <rect x="460" y="25" width="130" height="110" rx="10" class="room-rect room-active"/>
+        <text x="525" y="72" class="room-label">Math 4</text>
+        <circle cx="523" cy="105" r="4" class="room-dot"/>
+      </g>
+
+      <g class="map-room" data-room="Humanities 4">
+        <rect x="610" y="25" width="140" height="110" rx="10" class="room-rect room-active"/>
+        <text x="680" y="72" class="room-label">Humanities 4</text>
+        <circle cx="678" cy="105" r="4" class="room-dot"/>
+      </g>
+
+      <g class="map-room" data-room="IT Lab 01">
+        <rect x="810" y="25" width="120" height="110" rx="10" class="room-rect room-active"/>
+        <text x="870" y="72" class="room-label">IT Lab 01</text>
+        <circle cx="868" cy="105" r="4" class="room-dot"/>
+      </g>
+
+      <g class="map-room" data-room="IT Lab 02">
+        <rect x="950" y="25" width="100" height="110" rx="10" class="room-rect room-active"/>
+        <text x="1000" y="72" class="room-label">IT Lab 02</text>
+        <circle cx="998" cy="105" r="4" class="room-dot"/>
+      </g>
+
+      <!-- Corridor labels -->
+      <text x="540" y="330" class="corridor-label">Main Corridor</text>
+
+      <!-- Assembly Hall -->
+      <g class="map-room" data-room="Assembly Hall">
+        <rect x="820" y="290" width="230" height="190" rx="12" class="room-rect room-keynote"/>
+        <text x="935" y="380" class="room-label-lg">Assembly</text>
+        <text x="935" y="410" class="room-label-lg">Hall</text>
+        <text x="935" y="440" class="room-sublabel">Keynotes</text>
+        <circle cx="933" cy="465" r="4" class="room-dot"/>
+      </g>
+
+      <!-- Bottom row rooms -->
+      <g class="map-room" data-room="Social Sciences 3">
+        <rect x="100" y="485" width="160" height="110" rx="10" class="room-rect room-active"/>
+        <text x="180" y="533" class="room-label">Social Sciences</text>
+        <text x="180" y="557" class="room-label">3</text>
+        <circle cx="178" cy="575" r="4" class="room-dot"/>
+      </g>
+
+      <g class="map-room" data-room="Social Sciences 2">
+        <rect x="280" y="485" width="160" height="110" rx="10" class="room-rect room-active"/>
+        <text x="360" y="533" class="room-label">Social Sciences</text>
+        <text x="360" y="557" class="room-label">2</text>
+        <circle cx="358" cy="575" r="4" class="room-dot"/>
+      </g>
+
+      <g class="map-room" data-room="Math 5">
+        <rect x="510" y="485" width="130" height="110" rx="10" class="room-rect room-active"/>
+        <text x="575" y="540" class="room-label">Math 5</text>
+        <circle cx="573" cy="570" r="4" class="room-dot"/>
+      </g>
+
+      <g class="map-room" data-room="Math 6">
+        <rect x="660" y="485" width="130" height="110" rx="10" class="room-rect room-active"/>
+        <text x="725" y="540" class="room-label">Math 6</text>
+        <circle cx="723" cy="570" r="4" class="room-dot"/>
+      </g>
+
+      <!-- Entrance arrows (decorative) -->
+      <line x1="15" y1="310" x2="60" y2="310" class="map-arrow"/>
+      <polygon points="60,300 80,310 60,320" class="map-arrow-head"/>
+      <text x="15" y="340" class="entrance-label">Entrance</text>
+    </svg>
+  </div>
+
+  <!-- Room detail panel (slides up on tap) -->
+  <div id="room-panel" class="room-panel" aria-hidden="true">
+    <div class="room-panel-backdrop"></div>
+    <div class="room-panel-sheet">
+      <div class="room-panel-handle"></div>
+      <h3 class="room-panel-title"></h3>
+      <div class="room-panel-sessions"></div>
+    </div>
+  </div>
+</section>
 
 <!-- ============================================================ -->
 <!-- SPEAKERS -->

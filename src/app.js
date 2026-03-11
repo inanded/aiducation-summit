@@ -176,13 +176,129 @@
   setInterval(checkNow, 60000);
 
   // ============================================================
+  // Venue Map — Room Sessions
+  // ============================================================
+  const roomSessions = {
+    'Assembly Hall': [
+      { time: '09:30', session: 'Session 1', title: 'Innovation with Integrity (Keynote)', speaker: 'Professor Rose Luckin', track: 'keynote', trackLabel: 'Keynote' },
+      { time: '15:45', session: 'Session 4', title: 'AI as a Catalyst for Education Reform (Keynote)', speaker: 'Al Kingsley MBE', track: 'keynote', trackLabel: 'Keynote' }
+    ],
+    'Social Sciences 2': [
+      { time: '10:30', session: 'Session 1', title: 'AI for Operational Efficiency', speaker: 'Chris Loveday', track: 'strategy', trackLabel: 'Strategy' },
+      { time: '11:45', session: 'Session 2', title: '90-Day AI Action Plan', speaker: 'Luke Harris', track: 'strategy', trackLabel: 'Strategy' },
+      { time: '14:00', session: 'Session 3', title: 'AI for Operational Efficiency', speaker: 'Chris Loveday', track: 'strategy', trackLabel: 'Strategy' },
+      { time: '14:45', session: 'Session 4', title: '90-Day AI Action Plan', speaker: 'Luke Harris', track: 'strategy', trackLabel: 'Strategy' }
+    ],
+    'Social Sciences 3': [
+      { time: '10:30', session: 'Session 1', title: 'Thoughtful Use of AI in the Classroom', speaker: 'Amelia King', track: 'pedagogy', trackLabel: 'Pedagogy' },
+      { time: '11:45', session: 'Session 2', title: 'Creativity in the Age of AI', speaker: 'Trudi Barrow', track: 'creativity', trackLabel: 'Creativity' },
+      { time: '14:00', session: 'Session 3', title: 'Thoughtful Use of AI in the Classroom', speaker: 'Amelia King', track: 'pedagogy', trackLabel: 'Pedagogy' },
+      { time: '14:45', session: 'Session 4', title: 'Creativity in the Age of AI', speaker: 'Trudi Barrow', track: 'creativity', trackLabel: 'Creativity' }
+    ],
+    'Humanities 4': [
+      { time: '10:30', session: 'Session 1', title: 'Critical Thinking with AI', speaker: 'Ben Whitaker', track: 'strategy', trackLabel: 'Strategy' },
+      { time: '11:45', session: 'Session 2', title: 'Smarter Tools, Wider Doors: AI + UDL', speaker: 'Ben Whitaker', track: 'safeguarding', trackLabel: 'Safeguarding' },
+      { time: '14:00', session: 'Session 3', title: 'Critical Thinking with AI', speaker: 'Ben Whitaker', track: 'strategy', trackLabel: 'Strategy' },
+      { time: '14:45', session: 'Session 4', title: 'Inclusion by Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Safeguarding' }
+    ],
+    'Math 4': [
+      { time: '10:30', session: 'Session 1', title: 'Policy to Classroom: Protecting Student Agency', speaker: 'Daire Maria Ni Uanachain', track: 'pedagogy', trackLabel: 'Pedagogy' },
+      { time: '11:45', session: 'Session 2', title: 'Policy to Classroom: Protecting Student Agency', speaker: 'Daire Maria Ni Uanachain', track: 'pedagogy', trackLabel: 'Pedagogy' },
+      { time: '14:00', session: 'Session 3', title: 'From Strategy to Classroom', speaker: 'Professor Rose Luckin', track: 'strategy', trackLabel: 'Strategy' },
+      { time: '14:45', session: 'Session 4', title: 'Policy to Classroom: Protecting Student Agency', speaker: 'Daire Maria Ni Uanachain', track: 'pedagogy', trackLabel: 'Pedagogy' }
+    ],
+    'Math 5': [
+      { time: '10:30', session: 'Session 1', title: 'AI \u2013 Safe into Safeguarding?', speaker: 'James Garnett & Emma Darcy', track: 'safeguarding', trackLabel: 'Safeguarding' },
+      { time: '11:45', session: 'Session 2', title: 'Education Data Spine', speaker: 'Matt Woodruff', track: 'strategy', trackLabel: 'Strategy' },
+      { time: '14:00', session: 'Session 3', title: 'AI \u2013 Safe into Safeguarding?', speaker: 'James Garnett & Emma Darcy', track: 'safeguarding', trackLabel: 'Safeguarding' },
+      { time: '14:45', session: 'Session 4', title: 'AI Governance and Ethics Challenge', speaker: 'Matt Woodruff', track: 'strategy', trackLabel: 'Strategy' }
+    ],
+    'Math 6': [
+      { time: '11:45', session: 'Session 2', title: 'AI for Education Optimisation', speaker: 'Thomas Akintan & Kevin Loi-Heng', track: 'strategy', trackLabel: 'Strategy' },
+      { time: '14:00', session: 'Session 3', title: 'The Archimedes Ecosystem', speaker: 'Ioannis Anapliotis', track: 'pedagogy', trackLabel: 'Pedagogy' },
+      { time: '14:45', session: 'Session 4', title: 'AI for Education Optimisation', speaker: 'Thomas Akintan & Kevin Loi-Heng', track: 'strategy', trackLabel: 'Strategy' }
+    ],
+    'IT Lab 01': [
+      { time: '10:30', session: 'Session 1', title: 'Responsible Chatbot Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Safeguarding' },
+      { time: '11:45', session: 'Session 2', title: 'Inclusion by Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Safeguarding' },
+      { time: '14:00', session: 'Session 3', title: 'Responsible Chatbot Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Safeguarding' }
+    ],
+    'IT Lab 02': [
+      { time: '10:30', session: 'Session 1', title: 'AI in a Primary Setting', speaker: 'Sacha van Straten', track: 'pedagogy', trackLabel: 'Pedagogy' },
+      { time: '11:45', session: 'Session 2', title: 'Canva Code \u2013 Build your own apps', speaker: 'Aaron Patching', track: 'creativity', trackLabel: 'Creativity' },
+      { time: '14:00', session: 'Session 3', title: 'Canva Code \u2013 Build your own apps', speaker: 'Aaron Patching', track: 'creativity', trackLabel: 'Creativity' },
+      { time: '14:45', session: 'Session 4', title: 'AI in a Primary Setting', speaker: 'Sacha van Straten', track: 'pedagogy', trackLabel: 'Pedagogy' }
+    ]
+  };
+
+  const roomPanel = document.getElementById('room-panel');
+
+  if (roomPanel) {
+    const panelTitle = roomPanel.querySelector('.room-panel-title');
+    const panelSessions = roomPanel.querySelector('.room-panel-sessions');
+    const backdrop = roomPanel.querySelector('.room-panel-backdrop');
+
+    function openRoomPanel(roomName) {
+      const sessions = roomSessions[roomName];
+
+      // Highlight selected room
+      document.querySelectorAll('.map-room').forEach(r => r.classList.remove('room-selected'));
+      const selected = document.querySelector(`.map-room[data-room="${roomName}"]`);
+      if (selected) selected.classList.add('room-selected');
+
+      panelTitle.textContent = roomName;
+
+      if (!sessions || sessions.length === 0) {
+        panelSessions.innerHTML = '<div class="rp-empty">No workshops scheduled in this room.</div>';
+      } else {
+        panelSessions.innerHTML = sessions.map(s => `
+          <div class="rp-session">
+            <div class="rp-time">${s.time}</div>
+            <div class="rp-info">
+              <div class="rp-title">${s.title}</div>
+              <div class="rp-speaker">${s.speaker}</div>
+            </div>
+            <span class="track-badge ${s.track} rp-track-badge">${s.trackLabel}</span>
+          </div>
+        `).join('');
+      }
+
+      roomPanel.classList.add('open');
+      roomPanel.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeRoomPanel() {
+      roomPanel.classList.remove('open');
+      roomPanel.setAttribute('aria-hidden', 'true');
+      document.querySelectorAll('.map-room').forEach(r => r.classList.remove('room-selected'));
+    }
+
+    // Click on rooms
+    document.querySelectorAll('.map-room').forEach(room => {
+      const rect = room.querySelector('.room-rect');
+      if (rect && (rect.classList.contains('room-active') || rect.classList.contains('room-keynote'))) {
+        room.style.cursor = 'pointer';
+        room.addEventListener('click', () => openRoomPanel(room.dataset.room));
+      }
+    });
+
+    // Close on backdrop tap
+    backdrop.addEventListener('click', closeRoomPanel);
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && roomPanel.classList.contains('open')) closeRoomPanel();
+    });
+  }
+
+  // ============================================================
   // Hash-based Routing
   // ============================================================
   function handleRoute() {
     const hash = location.hash.slice(1);
     if (hash.startsWith('speaker/')) {
       showSpeaker(hash.replace('speaker/', ''), false);
-    } else if (['schedule', 'speakers', 'info'].includes(hash)) {
+    } else if (['schedule', 'map', 'speakers', 'info'].includes(hash)) {
       activateTab(hash, false);
     } else {
       activateTab('schedule', false);
