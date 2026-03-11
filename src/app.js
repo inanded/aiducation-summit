@@ -492,6 +492,106 @@
   }
 
   // ============================================================
+  // Map Pinch-to-Zoom & Pan
+  // ============================================================
+  const mapSvg = document.querySelector('.venue-map');
+  const mapBox = document.querySelector('.map-container');
+  if (mapSvg && mapBox) {
+    let scale = 1, panX = 0, panY = 0;
+    let startDist = 0, startScale = 1;
+    let startX = 0, startY = 0, startPanX = 0, startPanY = 0;
+    let isPanning = false;
+    const MIN_SCALE = 1, MAX_SCALE = 3.5;
+
+    function clampPan() {
+      const bw = mapBox.clientWidth, bh = mapBox.clientHeight;
+      const sw = bw * scale, sh = (bw * 620 / 1080) * scale;
+      panX = Math.min(0, Math.max(bw - sw, panX));
+      panY = Math.min(0, Math.max(bh - sh, panY));
+    }
+
+    function applyTransform() {
+      clampPan();
+      mapSvg.style.transform = `translate(${panX}px,${panY}px) scale(${scale})`;
+    }
+
+    function dist(t) {
+      const dx = t[0].clientX - t[1].clientX;
+      const dy = t[0].clientY - t[1].clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    function midpoint(t) {
+      return { x: (t[0].clientX + t[1].clientX) / 2, y: (t[0].clientY + t[1].clientY) / 2 };
+    }
+
+    mapBox.addEventListener('touchstart', e => {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        startDist = dist(e.touches);
+        startScale = scale;
+        const mid = midpoint(e.touches);
+        startX = mid.x; startY = mid.y;
+        startPanX = panX; startPanY = panY;
+        isPanning = false;
+      } else if (e.touches.length === 1 && scale > 1) {
+        e.preventDefault();
+        isPanning = true;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        startPanX = panX; startPanY = panY;
+      }
+    }, { passive: false });
+
+    mapBox.addEventListener('touchmove', e => {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, startScale * (dist(e.touches) / startDist)));
+        const mid = midpoint(e.touches);
+        const rect = mapBox.getBoundingClientRect();
+        const ox = mid.x - rect.left, oy = mid.y - rect.top;
+        panX = ox - (ox - startPanX) * (newScale / scale);
+        panY = oy - (oy - startPanY) * (newScale / scale);
+        scale = newScale;
+        applyTransform();
+      } else if (e.touches.length === 1 && isPanning && scale > 1) {
+        e.preventDefault();
+        panX = startPanX + (e.touches[0].clientX - startX);
+        panY = startPanY + (e.touches[0].clientY - startY);
+        applyTransform();
+      }
+    }, { passive: false });
+
+    mapBox.addEventListener('touchend', e => {
+      if (e.touches.length < 2) isPanning = false;
+      if (scale <= 1.05) { scale = 1; panX = 0; panY = 0; applyTransform(); }
+    });
+
+    // Double-tap to zoom in/reset
+    let lastTap = 0;
+    mapBox.addEventListener('touchend', e => {
+      if (e.touches.length > 0) return;
+      const now = Date.now();
+      if (now - lastTap < 300) {
+        e.preventDefault();
+        if (scale > 1.1) {
+          scale = 1; panX = 0; panY = 0;
+        } else {
+          const rect = mapBox.getBoundingClientRect();
+          const ct = e.changedTouches[0];
+          const ox = ct.clientX - rect.left, oy = ct.clientY - rect.top;
+          const newScale = 2.2;
+          panX = ox - ox * newScale;
+          panY = oy - oy * newScale;
+          scale = newScale;
+        }
+        applyTransform();
+      }
+      lastTap = now;
+    });
+  }
+
+  // ============================================================
   // Expandable Sponsor Cards
   // ============================================================
   document.querySelectorAll('.sponsor-card.expandable').forEach(card => {
