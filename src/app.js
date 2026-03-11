@@ -384,7 +384,7 @@
   // ============================================================
   const roomSessions = {
     'Social Sciences 1': [
-      { time: 'All Day', title: 'Merlyn Live Demos', speaker: 'Ian Nairn (C-Learning)', track: 'creativity', trackLabel: 'Demo' }
+      { time: 'All Day', title: 'Merlyn Live Demos', speaker: 'Ian Nairn', track: 'creativity', trackLabel: 'Demo' }
     ],
     'Assembly Hall': [
       { time: '09:30', title: 'Innovation with Integrity (Keynote)', speaker: 'Professor Rose Luckin', track: 'keynote', trackLabel: 'Keynote' },
