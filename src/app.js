@@ -491,6 +491,25 @@
   }
 
   // ============================================================
+  // Expandable Sponsor Cards
+  // ============================================================
+  document.querySelectorAll('.sponsor-card.expandable').forEach(card => {
+    card.addEventListener('click', () => {
+      const wasExpanded = card.classList.contains('expanded');
+      document.querySelectorAll('.sponsor-card.expanded').forEach(c => {
+        c.classList.remove('expanded');
+        const d = c.querySelector('.sponsor-detail');
+        if (d) d.style.maxHeight = '0';
+      });
+      if (!wasExpanded) {
+        card.classList.add('expanded');
+        const detail = card.querySelector('.sponsor-detail');
+        if (detail) detail.style.maxHeight = detail.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ============================================================
   // My Schedule
   // ============================================================
   const mySchedList = document.getElementById('myschedule-list');
