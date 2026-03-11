@@ -860,7 +860,7 @@ a { color: var(--c-accent); text-decoration: none; }
   bottom: 0;
   left: 0;
   right: 0;
-  max-height: 55vh;
+  max-height: 45vh;
   overflow-y: auto;
   background: var(--c-surface);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
