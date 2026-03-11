@@ -205,9 +205,9 @@ a { color: var(--c-accent); text-decoration: none; }
 
 .tab-bar button {
   flex: 1;
-  padding: .8rem .25rem;
+  padding: .8rem .15rem;
   font: inherit;
-  font-size: .75rem;
+  font-size: .68rem;
   font-weight: 600;
   letter-spacing: .02em;
   border: none;
@@ -853,7 +853,7 @@ a { color: var(--c-accent); text-decoration: none; }
   bottom: 0;
   left: 0;
   right: 0;
-  max-height: 75vh;
+  max-height: 55vh;
   overflow-y: auto;
   background: var(--c-surface);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
@@ -990,6 +990,104 @@ a { color: var(--c-accent); text-decoration: none; }
 .fav-filter svg { width: 12px; height: 12px; }
 
 .session-card.fav-hidden { display: none; }
+
+/* ===== My Schedule ===== */
+.myschedule-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--c-text-tertiary);
+}
+
+.myschedule-empty p { margin-top: .75rem; font-size: .92rem; }
+.myschedule-hint { font-size: .8rem; opacity: .7; }
+
+.ms-time-header {
+  font-family: var(--font-display);
+  font-size: .95rem;
+  color: var(--c-text);
+  padding: .85rem .5rem .3rem;
+  margin-top: .75rem;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.ms-time-header:first-child { margin-top: 0; }
+
+.ms-card {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .7rem .75rem;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  margin-top: .35rem;
+  transition: all var(--duration) var(--ease);
+}
+
+.ms-card:hover { border-color: var(--c-border-strong); box-shadow: var(--shadow); }
+
+.ms-card-body { flex: 1; min-width: 0; }
+.ms-title { font-weight: 650; font-size: .84rem; line-height: 1.35; }
+.ms-speaker { font-size: .75rem; color: var(--c-text-secondary); margin-top: .1rem; }
+.ms-room { font-size: .65rem; color: var(--c-text-tertiary); margin-top: .15rem; }
+
+.ms-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: .35rem;
+  color: var(--c-text-tertiary);
+  border-radius: 50%;
+  min-width: 32px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all .2s;
+}
+
+.ms-remove:hover { color: var(--c-fav); background: rgba(231,76,60,.06); }
+
+/* ===== LinkedIn link ===== */
+.sp-linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  margin-top: .5rem;
+  padding: .35rem .75rem;
+  font-size: .78rem;
+  font-weight: 600;
+  color: #0a66c2;
+  background: rgba(10,102,194,.06);
+  border: 1px solid rgba(10,102,194,.15);
+  border-radius: 100px;
+  transition: all .2s;
+}
+
+.sp-linkedin:hover { background: rgba(10,102,194,.12); }
+.sp-linkedin svg { width: 16px; height: 16px; fill: #0a66c2; }
+
+/* ===== Room Panel Close Button ===== */
+.room-panel-close {
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+  background: var(--c-surface-hover);
+  border: 1px solid var(--c-border);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--c-text-secondary);
+  transition: all .2s;
+  z-index: 1;
+}
+
+.room-panel-close:hover { background: var(--c-border-strong); color: var(--c-text); }
 
 /* ===== Breakpoints ===== */
 @media (min-width: 600px) {

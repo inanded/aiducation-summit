@@ -7,6 +7,7 @@
   <title>AIducation Summit 2026</title>
   <meta name="description" content="AIducation Summit — 14 March 2026, Bucharest. A one-day education conference exploring AI in schools.">
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
 
@@ -25,6 +26,7 @@
 <!-- ===== Tab Bar ===== -->
 <nav class="tab-bar" role="tablist">
   <button data-tab="schedule" class="active" role="tab">Schedule</button>
+  <button data-tab="myschedule" role="tab">My Schedule</button>
   <button data-tab="map" role="tab">Map</button>
   <button data-tab="speakers" role="tab">Speakers</button>
   <button data-tab="info" role="tab">Info</button>
@@ -503,6 +505,18 @@
 </main>
 
 <!-- ============================================================ -->
+<!-- MY SCHEDULE -->
+<!-- ============================================================ -->
+<section id="myschedule" class="view">
+  <div class="myschedule-empty" id="myschedule-empty">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--c-text-tertiary)" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    <p>No sessions saved yet.</p>
+    <p class="myschedule-hint">Tap the heart on any session in the Schedule tab to build your personal timetable.</p>
+  </div>
+  <div id="myschedule-list" class="myschedule-list"></div>
+</section>
+
+<!-- ============================================================ -->
 <!-- MAP -->
 <!-- ============================================================ -->
 <section id="map" class="view">
@@ -510,7 +524,7 @@
   <div class="map-container" data-reveal>
     <svg viewBox="0 0 1080 620" class="venue-map" aria-label="Venue floor plan">
       <rect x="0" y="0" width="1080" height="620" rx="16" class="map-floor"/>
-      <g class="map-room" data-room="Social Sciences 1"><rect x="30" y="25" width="180" height="110" rx="10" class="room-rect room-inactive"/><text x="120" y="72" class="room-label">Social Sciences</text><text x="120" y="96" class="room-label">1</text></g>
+      <g class="map-room" data-room="Social Sciences 1"><rect x="30" y="25" width="180" height="110" rx="10" class="room-rect room-active"/><text x="120" y="62" class="room-label">Social Sciences</text><text x="120" y="82" class="room-label">1</text><text x="120" y="105" class="room-sublabel">Merlyn Demos</text><circle cx="118" cy="120" r="4" class="room-dot"/></g>
       <g class="map-room" data-room="Refreshments"><rect x="285" y="75" width="150" height="60" rx="10" class="room-rect room-utility"/><text x="360" y="112" class="room-label-sm">Refreshments</text></g>
       <g class="map-room" data-room="Math 4"><rect x="460" y="25" width="130" height="110" rx="10" class="room-rect room-active"/><text x="525" y="72" class="room-label">Math 4</text><circle cx="523" cy="105" r="4" class="room-dot"/></g>
       <g class="map-room" data-room="Humanities 4"><rect x="610" y="25" width="140" height="110" rx="10" class="room-rect room-active"/><text x="680" y="72" class="room-label">Humanities 4</text><circle cx="678" cy="105" r="4" class="room-dot"/></g>
@@ -522,13 +536,15 @@
       <g class="map-room" data-room="Social Sciences 2"><rect x="280" y="485" width="160" height="110" rx="10" class="room-rect room-active"/><text x="360" y="533" class="room-label">Social Sciences</text><text x="360" y="557" class="room-label">2</text><circle cx="358" cy="575" r="4" class="room-dot"/></g>
       <g class="map-room" data-room="Math 5"><rect x="510" y="485" width="130" height="110" rx="10" class="room-rect room-active"/><text x="575" y="540" class="room-label">Math 5</text><circle cx="573" cy="570" r="4" class="room-dot"/></g>
       <g class="map-room" data-room="Math 6"><rect x="660" y="485" width="130" height="110" rx="10" class="room-rect room-active"/><text x="725" y="540" class="room-label">Math 6</text><circle cx="723" cy="570" r="4" class="room-dot"/></g>
-      <line x1="15" y1="310" x2="60" y2="310" class="map-arrow"/><polygon points="60,300 80,310 60,320" class="map-arrow-head"/><text x="15" y="340" class="entrance-label">Entrance</text>
     </svg>
   </div>
   <div id="room-panel" class="room-panel" aria-hidden="true">
     <div class="room-panel-backdrop"></div>
     <div class="room-panel-sheet">
       <div class="room-panel-handle"></div>
+      <button class="room-panel-close" aria-label="Close panel">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
       <h3 class="room-panel-title"></h3>
       <div class="room-panel-sessions"></div>
     </div>
@@ -544,6 +560,7 @@
 
     <div class="speaker-card" data-slug="rose-luckin" data-speaker="rose-luckin" data-reveal data-reveal-delay="1"
       data-bio="Professor Rose Luckin is an internationally recognised authority on the future of education and AI. With over 30 years of experience, she serves as Professor Emerita at University College London and Founder of Educate Ventures Research. Her work has been honoured with the Bett Outstanding Achievement Award (2025) and the ISTE Impact Award. Author of <em>Machine Learning and Human Intelligence</em> and <em>AI for Schoolteachers</em>."
+      data-linkedin="https://www.linkedin.com/in/rose-luckin-5245003"
       data-sessions='[{"time":"09:30","title":"Innovation with Integrity (Keynote)","room":"Assembly Hall","track":"keynote","trackLabel":"Keynote"},{"time":"14:00","title":"From Strategy to Classroom","room":"Math 4","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/rose-luckin.jpg" alt="Rose Luckin" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Professor Rose Luckin</span>
@@ -553,6 +570,7 @@
 
     <div class="speaker-card" data-slug="al-kingsley" data-speaker="al-kingsley" data-reveal data-reveal-delay="2"
       data-bio="Al Kingsley MBE is an internationally recognised leader in educational technology with over 30 years of experience. Group CEO of NetSupport, Chair of a large Multi-Academy Trust and BESA. Author of <em>The Awkward Questions in Education</em>. Awarded an MBE in 2024 for services to education."
+      data-linkedin="https://www.linkedin.com/in/alkingsley1/"
       data-sessions='[{"time":"15:45","title":"AI as a Catalyst for Education Reform (Keynote)","room":"Assembly Hall","track":"keynote","trackLabel":"Keynote"}]'>
       <img src="Headshots/al-kingsley.jpg" alt="Al Kingsley" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Al Kingsley MBE</span>
@@ -562,6 +580,7 @@
 
     <div class="speaker-card" data-slug="aaron-patching" data-speaker="aaron-patching" data-reveal data-reveal-delay="3"
       data-bio="Aaron Patching is an innovative educator, digital leader, and certified Canva Trainer with 13 years of experience. As Lead Practitioner of Digital Learning, he specialises in utilising AI to drive educational change and enhance teaching and learning."
+      data-linkedin="https://www.linkedin.com/in/aaron-patching"
       data-sessions='[{"time":"11:45","title":"Canva Code","room":"IT Lab 02","track":"creativity","trackLabel":"Creativity"},{"time":"14:00","title":"Canva Code","room":"IT Lab 02","track":"creativity","trackLabel":"Creativity"}]'>
       <img src="Headshots/aaron-patching.jpg" alt="Aaron Patching" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Aaron Patching</span>
@@ -571,6 +590,7 @@
 
     <div class="speaker-card" data-slug="amelia-king" data-speaker="amelia-king" data-reveal data-reveal-delay="4"
       data-bio="Amelia King works at the intersection of AI, metacognition, critical thinking, and creativity. She helps educators cut through AI hype to design strategies that genuinely support human thinking."
+      data-linkedin="https://www.linkedin.com/in/ameliaking1/"
       data-sessions='[{"time":"10:30","title":"Thoughtful Use of AI","room":"Social Sciences 3","track":"pedagogy","trackLabel":"Pedagogy"},{"time":"14:00","title":"Thoughtful Use of AI","room":"Social Sciences 3","track":"pedagogy","trackLabel":"Pedagogy"}]'>
       <img src="Headshots/amelia-king.jpg" alt="Amelia King" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Amelia King</span>
@@ -579,16 +599,18 @@
     </div>
 
     <div class="speaker-card" data-slug="ben-whitaker" data-speaker="ben-whitaker" data-reveal data-reveal-delay="5"
-      data-bio="Ben Whitaker is a UK-based education consultant, speaker, and co-director of Edufuturists. He supports organisations, MATs, and FE colleges with AI audits, staff training, and leadership strategy. Host of the <em>Edufuturists</em> podcast."
+      data-bio="Ben Whitaker &mdash; <strong>The IDEAS Guy</strong> &mdash; is a UK-based education consultant, speaker, and co-director of Edufuturists. He supports organisations, MATs, and FE colleges with AI audits, staff training, and leadership strategy. Host of the <em>Edufuturists</em> podcast."
+      data-linkedin="https://www.linkedin.com/in/itsbenwhitaker/"
       data-sessions='[{"time":"10:30","title":"Critical Thinking with AI","room":"Humanities 4","track":"strategy","trackLabel":"Strategy"},{"time":"11:45","title":"Smarter Tools, Wider Doors","room":"Humanities 4","track":"safeguarding","trackLabel":"Safeguarding"},{"time":"14:00","title":"Critical Thinking with AI","room":"Humanities 4","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/ben-whitaker.jpg" alt="Ben Whitaker" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Ben Whitaker</span>
-      <span class="speaker-affiliation">Edufuturists</span>
+      <span class="speaker-affiliation">The IDEAS Guy / Edufuturists</span>
       <span class="arrow-hint">View profile</span>
     </div>
 
     <div class="speaker-card" data-slug="chris-loveday" data-speaker="chris-loveday" data-reveal data-reveal-delay="6"
       data-bio="Chris leads strategy across finance, estates, IT, and organisational development at Barton Peveril Sixth Form College. He has spearheaded a college-wide AI transformation programme."
+      data-linkedin="https://www.linkedin.com/in/chris-loveday-5b712622b/"
       data-sessions='[{"time":"10:30","title":"AI for Operational Efficiency","room":"Social Sciences 2","track":"strategy","trackLabel":"Strategy"},{"time":"14:00","title":"AI for Operational Efficiency","room":"Social Sciences 2","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/chris-loveday.jpg" alt="Chris Loveday" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Chris Loveday</span>
@@ -598,6 +620,7 @@
 
     <div class="speaker-card" data-slug="daire-ni-uanachain" data-speaker="daire-ni-uanachain" data-reveal data-reveal-delay="7"
       data-bio="Daire is an award-nominated educator, researcher, and EdTech strategist focused on innovative teaching and human-centred AI integration. She collaborates with European universities on generative AI and digital literacy research."
+      data-linkedin="https://www.linkedin.com/in/dairemaria-niuanachain/"
       data-sessions='[{"time":"10:30","title":"Policy to Classroom","room":"Math 4","track":"pedagogy","trackLabel":"Pedagogy"},{"time":"11:45","title":"Policy to Classroom","room":"Math 4","track":"pedagogy","trackLabel":"Pedagogy"},{"time":"14:45","title":"Policy to Classroom","room":"Math 4","track":"pedagogy","trackLabel":"Pedagogy"}]'>
       <img src="Headshots/daire-ni-uanachain.jpg" alt="Daire Maria Ni Uanachain" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Daire Maria Ni Uanachain</span>
@@ -607,6 +630,7 @@
 
     <div class="speaker-card" data-slug="david-curran" data-speaker="david-curran" data-reveal data-reveal-delay="1"
       data-bio="David Curran is Head of Careers and Assistive Technology at Moon Hall School Reigate and a consultant at the intersection of inclusive education and AI. AT Scholar for ATIA 2026."
+      data-linkedin="https://www.linkedin.com/in/david-curran-28872a202/"
       data-sessions='[{"time":"10:30","title":"Responsible Chatbot Design","room":"IT Lab 01","track":"safeguarding","trackLabel":"Safeguarding"},{"time":"11:45","title":"Inclusion by Design","room":"IT Lab 01","track":"safeguarding","trackLabel":"Safeguarding"},{"time":"14:00","title":"Responsible Chatbot Design","room":"IT Lab 01","track":"safeguarding","trackLabel":"Safeguarding"},{"time":"14:45","title":"Inclusion by Design","room":"Humanities 4","track":"safeguarding","trackLabel":"Safeguarding"}]'>
       <img src="Headshots/david-curran.jpg" alt="David Curran" class="speaker-photo" loading="lazy">
       <span class="speaker-name">David Curran</span>
@@ -616,6 +640,7 @@
 
     <div class="speaker-card" data-slug="emma-darcy" data-speaker="emma-darcy" data-reveal data-reveal-delay="2"
       data-bio="Emma Darcy is Director of Tech for Learning at Denbigh High School and a Pearson National Teaching Award winner. Named in the 2026 Bett UK EdTech 10 List. Trustee for Apps for Good and founder of the Digital Futures Group."
+      data-linkedin="https://www.linkedin.com/in/emma-darcy-9b770828/"
       data-sessions='[{"time":"10:30","title":"AI \u2013 Safe into Safeguarding?","room":"Math 5","track":"safeguarding","trackLabel":"Safeguarding"},{"time":"14:00","title":"AI \u2013 Safe into Safeguarding?","room":"Math 5","track":"safeguarding","trackLabel":"Safeguarding"}]'>
       <img src="Headshots/emma-darcy.jpg" alt="Emma Darcy" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Emma Darcy</span>
@@ -625,6 +650,7 @@
 
     <div class="speaker-card" data-slug="ioannis-anapliotis" data-speaker="ioannis-anapliotis" data-reveal data-reveal-delay="3"
       data-bio="Ioannis Anapliotis is a practitioner-leader in meaningful AI integration in education. Based in Athens, he designs teacher-ready AI literacy programmes and curriculum-aligned learning experiences."
+      data-linkedin="https://www.linkedin.com/in/ioannis-anapliotis-51417829a/"
       data-sessions='[{"time":"14:00","title":"The Archimedes Ecosystem","room":"Math 6","track":"pedagogy","trackLabel":"Pedagogy"}]'>
       <img src="Headshots/ioannis-anapliotis.jpg" alt="Ioannis Anapliotis" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Ioannis Anapliotis</span>
@@ -634,6 +660,7 @@
 
     <div class="speaker-card" data-slug="james-garnett" data-speaker="james-garnett" data-reveal data-reveal-delay="4"
       data-bio="James Garnett has a distinguished 30-year career in digital education and cyber security. He previously led the EdTech Demonstrator Programme. Trustee for Apps for Good and founder of the Digital Futures Group."
+      data-linkedin="https://www.linkedin.com/in/jamesmgarnett/"
       data-sessions='[{"time":"10:30","title":"AI \u2013 Safe into Safeguarding?","room":"Math 5","track":"safeguarding","trackLabel":"Safeguarding"},{"time":"14:00","title":"AI \u2013 Safe into Safeguarding?","room":"Math 5","track":"safeguarding","trackLabel":"Safeguarding"}]'>
       <img src="Headshots/james-garnett.jpg" alt="James Garnett" class="speaker-photo" loading="lazy">
       <span class="speaker-name">James Garnett</span>
@@ -643,6 +670,7 @@
 
     <div class="speaker-card" data-slug="kevin-loi-heng" data-speaker="kevin-loi-heng" data-reveal data-reveal-delay="5"
       data-bio="Kevin Loi-Heng works at the intersection of technology, education, and ethics. Formerly with the Computational Philosophy Lab at Northeastern, he has delivered keynotes at the United Nations."
+      data-linkedin="https://www.linkedin.com/in/kevinloiheng/"
       data-sessions='[{"time":"11:45","title":"AI for Education Optimisation","room":"Math 6","track":"strategy","trackLabel":"Strategy"},{"time":"14:45","title":"AI for Education Optimisation","room":"Math 6","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/kevin-loi-heng.jpg" alt="Kevin Loi-Heng" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Kevin Loi-Heng</span>
@@ -652,6 +680,7 @@
 
     <div class="speaker-card" data-slug="luke-harris" data-speaker="luke-harris" data-reveal data-reveal-delay="6"
       data-bio="Luke is an educational leader specialising in digital transformation and computing strategy. With 16 years of industry experience, he translates real-world technical expertise into classroom practice."
+      data-linkedin="https://www.linkedin.com/in/luketgharris/"
       data-sessions='[{"time":"11:45","title":"90-Day AI Action Plan","room":"Social Sciences 2","track":"strategy","trackLabel":"Strategy"},{"time":"14:45","title":"90-Day AI Action Plan","room":"Social Sciences 2","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/luke-harris.jpg" alt="Luke Harris" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Luke Harris</span>
@@ -661,6 +690,7 @@
 
     <div class="speaker-card" data-slug="matt-woodruff" data-speaker="matt-woodruff" data-reveal data-reveal-delay="7"
       data-bio="Matt Woodruff is the founder of Open Education AI, providing open-source analytics to 600+ schools. He leads Edequity AI and recently submitted his PhD on ethical AI for contextual safeguarding."
+      data-linkedin="https://www.linkedin.com/in/themattwoodruff/"
       data-sessions='[{"time":"11:45","title":"Education Data Spine","room":"Math 5","track":"strategy","trackLabel":"Strategy"},{"time":"14:45","title":"AI Governance &amp; Ethics","room":"Math 5","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/matt-woodruff.jpg" alt="Matt Woodruff" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Matt Woodruff</span>
@@ -670,6 +700,7 @@
 
     <div class="speaker-card" data-slug="sacha-van-straten" data-speaker="sacha-van-straten" data-reveal data-reveal-delay="1"
       data-bio="Sacha is an award-winning communications specialist and change agent. After a career in radio, TV, and interactive media, he transitioned into education. Head of Digital Innovation at St Catherine&rsquo;s British School, Athens."
+      data-linkedin="https://www.linkedin.com/in/sacha-van-straten"
       data-sessions='[{"time":"10:30","title":"AI in a Primary Setting","room":"IT Lab 02","track":"pedagogy","trackLabel":"Pedagogy"},{"time":"14:45","title":"AI in a Primary Setting","room":"IT Lab 02","track":"pedagogy","trackLabel":"Pedagogy"}]'>
       <img src="Headshots/sacha-van-straten.jpg" alt="Sacha van Straten" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Sacha van Straten</span>
@@ -679,6 +710,7 @@
 
     <div class="speaker-card" data-slug="thomas-akintan" data-speaker="thomas-akintan" data-reveal data-reveal-delay="2"
       data-bio="Thomas Akintan is Co-founder of Avalon Insights, a research-led AI training and consulting company with experience across the UK, EMEA, and North America."
+      data-linkedin="https://www.linkedin.com/in/thomas-a-133947102/"
       data-sessions='[{"time":"11:45","title":"AI for Education Optimisation","room":"Math 6","track":"strategy","trackLabel":"Strategy"},{"time":"14:45","title":"AI for Education Optimisation","room":"Math 6","track":"strategy","trackLabel":"Strategy"}]'>
       <img src="Headshots/thomas-akintan.jpg" alt="Thomas Akintan" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Thomas Akintan</span>
@@ -688,10 +720,20 @@
 
     <div class="speaker-card" data-slug="trudi-barrow" data-speaker="trudi-barrow" data-reveal data-reveal-delay="3"
       data-bio="Trudi Barrow is an award-winning design educator. Adviser at CLEAPSS, editor of <em>Futureminds</em> digital magazine. Background in theatre design from RADA and the National Theatre."
+      data-linkedin="https://www.linkedin.com/in/trudibarrow/"
       data-sessions='[{"time":"11:45","title":"Creativity in the Age of AI","room":"Social Sciences 3","track":"creativity","trackLabel":"Creativity"},{"time":"14:45","title":"Creativity in the Age of AI","room":"Social Sciences 3","track":"creativity","trackLabel":"Creativity"}]'>
       <img src="Headshots/trudi-barrow.jpg" alt="Trudi Barrow" class="speaker-photo" loading="lazy">
       <span class="speaker-name">Trudi Barrow</span>
       <span class="speaker-affiliation">Design Educator / CLEAPSS</span>
+      <span class="arrow-hint">View profile</span>
+    </div>
+
+    <div class="speaker-card" data-slug="ian-nairn" data-speaker="ian-nairn" data-reveal data-reveal-delay="4"
+      data-bio="Ian Nairn is CEO of C-Learning, Merlyn's partner for education across the UK and Europe. Merlyn is the first AI assistant purpose-built for teachers &mdash; powered by voice control and a handheld remote, it lets educators operate their classroom display, web apps, and generative AI tools from anywhere in the room. Independent research shows teachers using Merlyn spend less time on admin, with 61% reporting reduced technology-related stress after just seven weeks."
+      data-sessions='[{"time":"All Day","title":"Merlyn Live Demos","room":"Social Sciences 1","track":"creativity","trackLabel":"Demo"}]'>
+      <img src="Headshots/ian-nairn.jpg" alt="Ian Nairn" class="speaker-photo" loading="lazy">
+      <span class="speaker-name">Ian Nairn</span>
+      <span class="speaker-affiliation">CEO, C-Learning / Merlyn</span>
       <span class="arrow-hint">View profile</span>
     </div>
 
@@ -731,6 +773,7 @@
     <div class="sponsor-card" data-reveal data-reveal-delay="5"><strong>COBIS</strong><p>Quality assurance for 450+ international schools.</p></div>
     <div class="sponsor-card" data-reveal data-reveal-delay="6"><strong>DEEP Professional</strong><p>Teacher empowerment and AI literacy.</p></div>
     <div class="sponsor-card" data-reveal data-reveal-delay="7"><strong>BRCC</strong><p>British Romanian Chamber of Commerce.</p></div>
+    <div class="sponsor-card" data-reveal data-reveal-delay="1"><strong>Merlyn</strong><p>AI voice assistant purpose-built for teachers. Live demos in Social Sciences 1.</p></div>
   </div>
 
   <h2 data-reveal>Venue Rooms</h2>

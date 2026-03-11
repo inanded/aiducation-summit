@@ -156,6 +156,7 @@
       affiliation: card.querySelector('.speaker-affiliation').textContent,
       photo: card.querySelector('.speaker-photo').src,
       bio: card.dataset.bio,
+      linkedin: card.dataset.linkedin || '',
       sessions: JSON.parse(card.dataset.sessions || '[]')
     };
   });
@@ -178,6 +179,10 @@
       </div>
     `).join('');
 
+    const linkedinHtml = sp.linkedin
+      ? `<a href="${sp.linkedin}" target="_blank" rel="noopener" class="sp-linkedin" aria-label="LinkedIn profile"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>`
+      : '';
+
     speakerPage.innerHTML = `
       <button class="sp-back" aria-label="Back to speakers">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
@@ -187,6 +192,7 @@
         <img src="${sp.photo}" alt="${sp.name}">
         <h2>${sp.name}</h2>
         <div class="sp-affiliation">${sp.affiliation}</div>
+        ${linkedinHtml}
       </div>
       <div class="sp-bio">${sp.bio}</div>
       ${sp.sessions.length ? `<div class="sp-sessions-title">Sessions</div>${sessionsHtml}` : ''}
@@ -377,6 +383,9 @@
   // Venue Map
   // ============================================================
   const roomSessions = {
+    'Social Sciences 1': [
+      { time: 'All Day', title: 'Merlyn Live Demos', speaker: 'Ian Nairn (C-Learning)', track: 'creativity', trackLabel: 'Demo' }
+    ],
     'Assembly Hall': [
       { time: '09:30', title: 'Innovation with Integrity (Keynote)', speaker: 'Professor Rose Luckin', track: 'keynote', trackLabel: 'Keynote' },
       { time: '15:45', title: 'AI as a Catalyst for Education Reform (Keynote)', speaker: 'Al Kingsley MBE', track: 'keynote', trackLabel: 'Keynote' }
@@ -474,10 +483,124 @@
     });
 
     backdrop.addEventListener('click', closeRoomPanel);
+    const closeBtn = roomPanel.querySelector('.room-panel-close');
+    if (closeBtn) closeBtn.addEventListener('click', closeRoomPanel);
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && roomPanel.classList.contains('open')) closeRoomPanel();
     });
   }
+
+  // ============================================================
+  // My Schedule
+  // ============================================================
+  const mySchedList = document.getElementById('myschedule-list');
+  const mySchedEmpty = document.getElementById('myschedule-empty');
+
+  // Build a lookup of all session cards by fav ID
+  const allSessionData = {};
+  document.querySelectorAll('.fav-btn[data-fav-id]').forEach(btn => {
+    const card = btn.closest('.session-card, .keynote-card');
+    if (!card) return;
+    const id = btn.dataset.favId;
+
+    // Walk backwards through siblings to find preceding time-slot-header
+    let time = '';
+    let prev = card.previousElementSibling;
+    while (prev) {
+      if (prev.classList.contains('time-slot-header')) {
+        time = prev.textContent.replace(/\s+/g, ' ').trim().split(' ')[0];
+        break;
+      }
+      prev = prev.previousElementSibling;
+    }
+
+    const title = card.querySelector('.session-title, .keynote-title');
+    const meta = card.querySelector('.session-meta, .keynote-speaker');
+    const room = card.querySelector('.session-room');
+    const track = card.dataset.track || 'keynote';
+    const trackLabel = card.querySelector('.track-badge');
+    allSessionData[id] = {
+      time,
+      title: title ? title.textContent : '',
+      speaker: meta ? meta.textContent.trim() : '',
+      room: room ? room.textContent : '',
+      track,
+      trackLabel: trackLabel ? trackLabel.textContent : ''
+    };
+  });
+
+  function renderMySchedule() {
+    if (!mySchedList || !mySchedEmpty) return;
+    const favIds = [...favs].filter(id => allSessionData[id]);
+
+    if (!favIds.length) {
+      mySchedEmpty.style.display = '';
+      mySchedList.innerHTML = '';
+      return;
+    }
+
+    mySchedEmpty.style.display = 'none';
+
+    // Sort by time
+    favIds.sort((a, b) => {
+      const ta = allSessionData[a].time;
+      const tb = allSessionData[b].time;
+      return ta.localeCompare(tb);
+    });
+
+    // Group by time
+    const groups = {};
+    favIds.forEach(id => {
+      const s = allSessionData[id];
+      if (!groups[s.time]) groups[s.time] = [];
+      groups[s.time].push({ ...s, id });
+    });
+
+    let html = '';
+    for (const [time, sessions] of Object.entries(groups)) {
+      html += `<div class="ms-time-header">${time}</div>`;
+      sessions.forEach(s => {
+        html += `
+          <div class="ms-card">
+            <div class="ms-card-body">
+              <div class="ms-title">${s.title}</div>
+              <div class="ms-speaker">${s.speaker}</div>
+              ${s.room ? `<div class="ms-room">${s.room}</div>` : ''}
+            </div>
+            <span class="track-badge ${s.track}">${s.trackLabel}</span>
+            <button class="ms-remove" data-fav-id="${s.id}" aria-label="Remove">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+          </div>`;
+      });
+    }
+
+    mySchedList.innerHTML = html;
+
+    // Attach remove handlers
+    mySchedList.querySelectorAll('.ms-remove').forEach(btn => {
+      btn.addEventListener('click', () => {
+        favs.delete(btn.dataset.favId);
+        saveFavs();
+        updateFavButtons();
+        renderMySchedule();
+      });
+    });
+  }
+
+  // Re-render My Schedule when switching to that tab
+  const origActivateTab = activateTab;
+  activateTab = function(id, pushState) {
+    origActivateTab(id, pushState);
+    if (id === 'myschedule') renderMySchedule();
+  };
+
+  // Also re-render after any fav toggle
+  const origSaveFavs = saveFavs;
+  saveFavs = function() {
+    origSaveFavs();
+    renderMySchedule();
+  };
 
   // ============================================================
   // Routing
@@ -486,7 +609,7 @@
     const hash = location.hash.slice(1);
     if (hash.startsWith('speaker/')) {
       showSpeaker(hash.replace('speaker/', ''), false);
-    } else if (['schedule', 'map', 'speakers', 'info'].includes(hash)) {
+    } else if (['schedule', 'myschedule', 'map', 'speakers', 'info'].includes(hash)) {
       activateTab(hash, false);
     } else {
       activateTab('schedule', false);
