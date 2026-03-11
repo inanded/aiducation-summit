@@ -102,7 +102,6 @@ a { color: var(--c-accent); text-decoration: none; }
   height: 52px;
   margin: 0 auto .75rem;
   position: relative;
-  filter: brightness(0) invert(1);
 }
 
 .site-header h1 {
@@ -182,11 +181,6 @@ a { color: var(--c-accent); text-decoration: none; }
 .tab-bar button.active { color: var(--c-accent); }
 .tab-bar button.active::after { transform: scaleX(1); }
 
-.tab-bar .tab-icon {
-  display: block;
-  font-size: 1.15rem;
-  margin-bottom: .15rem;
-}
 
 /* ===== Views & Transitions ===== */
 .view { display: none; max-width: 960px; margin: 0 auto; padding: 1rem; }
@@ -273,7 +267,6 @@ a { color: var(--c-accent); text-decoration: none; }
   margin-bottom: .5rem;
 }
 
-.banner-icon { font-size: 1.1rem; flex-shrink: 0; }
 
 /* ===== Session Cards ===== */
 .session-card {
@@ -638,10 +631,6 @@ a { color: var(--c-accent); text-decoration: none; }
   font-weight: 500;
 }
 
-.room-icon {
-  font-size: .9rem;
-  flex-shrink: 0;
-}
 
 /* ===== Track Filters ===== */
 .track-filters {
