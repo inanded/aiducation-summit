@@ -418,7 +418,7 @@
       { time: '10:30', title: 'AI \u2013 Safe into Safeguarding?', speaker: 'James Garnett & Emma Darcy', track: 'safeguarding', trackLabel: 'Safeguarding' },
       { time: '11:45', title: 'Education Data Spine', speaker: 'Matt Woodruff', track: 'strategy', trackLabel: 'Strategy' },
       { time: '14:00', title: 'AI \u2013 Safe into Safeguarding?', speaker: 'James Garnett & Emma Darcy', track: 'safeguarding', trackLabel: 'Safeguarding' },
-      { time: '14:45', title: 'AI Governance & Ethics', speaker: 'Matt Woodruff', track: 'strategy', trackLabel: 'Strategy' }
+      { time: '14:45', title: 'AI Governance & Ethics', speaker: 'Matt Woodruff', track: 'safeguarding', trackLabel: 'Safeguarding' }
     ],
     'Math 6': [
       { time: '11:45', title: 'AI for Education Optimisation', speaker: 'Thomas Akintan & Kevin Loi-Heng', track: 'strategy', trackLabel: 'Strategy' },
