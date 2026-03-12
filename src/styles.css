@@ -191,23 +191,27 @@ a { color: var(--c-accent); text-decoration: none; }
 }
 
 /* ===== Tab Bar ===== */
+.tab-icon { display: none; }
+
 .tab-bar {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 200;
   display: flex;
   background: var(--c-glass);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid var(--c-border);
-  padding: 0;
+  border-top: 1px solid var(--c-border);
+  padding: 0 0 env(safe-area-inset-bottom, 0);
 }
 
 .tab-bar button {
   flex: 1;
-  padding: .8rem .15rem;
+  padding: .5rem .15rem .35rem;
   font: inherit;
-  font-size: .68rem;
+  font-size: .6rem;
   font-weight: 600;
   letter-spacing: .02em;
   border: none;
@@ -216,17 +220,29 @@ a { color: var(--c-accent); text-decoration: none; }
   cursor: pointer;
   position: relative;
   transition: color var(--duration) var(--ease);
-  min-height: 48px;
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .2rem;
+}
+
+.tab-bar button .tab-icon {
+  display: block;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
 }
 
 .tab-bar button::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 24%;
   right: 24%;
   height: 2px;
-  border-radius: 2px 2px 0 0;
+  border-radius: 0 0 2px 2px;
   background: var(--c-accent);
   transform: scaleX(0);
   transition: transform var(--duration) var(--ease-spring);
@@ -234,6 +250,33 @@ a { color: var(--c-accent); text-decoration: none; }
 
 .tab-bar button.active { color: var(--c-accent); font-weight: 700; }
 .tab-bar button.active::after { transform: scaleX(1); }
+.tab-label-full { display: none; }
+
+/* Bottom bar spacing — prevent content being hidden behind the fixed bar */
+body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0)); }
+
+@media (min-width: 600px) {
+  .tab-bar {
+    position: sticky;
+    top: 0;
+    bottom: auto;
+    border-top: none;
+    border-bottom: 1px solid var(--c-border);
+    padding: 0;
+  }
+  .tab-bar button {
+    flex-direction: row;
+    padding: .8rem .15rem;
+    font-size: .68rem;
+    min-height: 48px;
+    gap: 0;
+  }
+  .tab-bar button .tab-icon { display: none; }
+  .tab-bar button .tab-label-short { display: none; }
+  .tab-bar button .tab-label-full { display: inline; }
+  .tab-bar button::after { top: auto; bottom: 0; border-radius: 2px 2px 0 0; }
+  body { padding-bottom: 0; }
+}
 
 /* ===== Views ===== */
 .view {
