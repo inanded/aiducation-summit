@@ -315,7 +315,7 @@ a { color: var(--c-accent); text-decoration: none; }
   cursor: pointer;
   white-space: nowrap;
   transition: all var(--duration) var(--ease);
-  min-height: 30px;
+  min-height: 36px;
 }
 
 .track-filter.active { border-color: var(--c-accent); color: var(--c-accent); background: var(--c-accent-soft); }
@@ -554,7 +554,7 @@ a { color: var(--c-accent); text-decoration: none; }
   border: 1px solid var(--c-border);
 }
 
-.session-meta a { color: var(--c-text-secondary); transition: color .2s; }
+.session-meta a { color: var(--c-text-secondary); transition: color .2s; padding: .35rem 0; }
 .session-meta a:hover { color: var(--c-accent); }
 
 .session-room {
@@ -595,8 +595,8 @@ a { color: var(--c-accent); text-decoration: none; }
   flex-shrink: 0;
   color: var(--c-text-tertiary);
   transition: all .2s var(--ease);
-  min-width: 36px;
-  min-height: 36px;
+  min-width: 44px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
