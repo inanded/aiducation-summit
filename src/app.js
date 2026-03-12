@@ -406,8 +406,7 @@
     'Humanities 4': [
       { time: '10:30', title: 'Critical Thinking with AI', speaker: 'Ben Whitaker', track: 'strategy', trackLabel: 'Strategy' },
       { time: '11:45', title: 'Smarter Tools, Wider Doors', speaker: 'Ben Whitaker', track: 'safeguarding', trackLabel: 'Inclusion' },
-      { time: '14:00', title: 'Critical Thinking with AI', speaker: 'Ben Whitaker', track: 'strategy', trackLabel: 'Strategy' },
-      { time: '14:45', title: 'Inclusion by Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Inclusion' }
+      { time: '14:00', title: 'Critical Thinking with AI', speaker: 'Ben Whitaker', track: 'strategy', trackLabel: 'Strategy' }
     ],
     'Math 4': [
       { time: '10:30', title: 'Policy to Classroom', speaker: 'Daire Maria Ni Uanachain', track: 'pedagogy', trackLabel: 'Pedagogy' },
@@ -429,7 +428,8 @@
     'IT Lab 01': [
       { time: '10:30', title: 'Responsible Chatbot Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Safeguarding' },
       { time: '11:45', title: 'Inclusion by Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Inclusion' },
-      { time: '14:00', title: 'Responsible Chatbot Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Safeguarding' }
+      { time: '14:00', title: 'Responsible Chatbot Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Safeguarding' },
+      { time: '14:45', title: 'Inclusion by Design', speaker: 'David Curran', track: 'safeguarding', trackLabel: 'Inclusion' }
     ],
     'IT Lab 02': [
       { time: '10:30', title: 'AI in a Primary Setting', speaker: 'Sacha van Straten', track: 'pedagogy', trackLabel: 'Pedagogy' },
