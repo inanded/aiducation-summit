@@ -387,7 +387,7 @@
       { time: 'All Day', title: 'Merlyn Live Demos', speaker: 'Ian Nairn', track: 'creativity', trackLabel: 'Demo' }
     ],
     'Assembly Hall': [
-      { time: '09:30', title: 'Innovation with Integrity (Keynote)', speaker: 'Professor Rose Luckin', track: 'keynote', trackLabel: 'Keynote' },
+      { time: '09:30', title: 'Innovation with Integrity (Panel)', speaker: 'Ben Whitaker (Host)', track: 'keynote', trackLabel: 'Panel' },
       { time: '12:30', title: 'Create. Code. Change.', speaker: 'Matthew Wemyss & Aaron Patching', track: 'creativity', trackLabel: 'Presentation' },
       { time: '15:45', title: 'AI as a Catalyst for Education Reform (Keynote)', speaker: 'Al Kingsley MBE', track: 'keynote', trackLabel: 'Keynote' }
     ],
@@ -411,7 +411,6 @@
     'Math 4': [
       { time: '10:30', title: 'Policy to Classroom', speaker: 'Daire Maria Ni Uanachain', track: 'pedagogy', trackLabel: 'Pedagogy' },
       { time: '11:45', title: 'Policy to Classroom', speaker: 'Daire Maria Ni Uanachain', track: 'pedagogy', trackLabel: 'Pedagogy' },
-      { time: '14:00', title: 'From Strategy to Classroom', speaker: 'Professor Rose Luckin', track: 'strategy', trackLabel: 'Strategy' },
       { time: '14:45', title: 'Policy to Classroom', speaker: 'Daire Maria Ni Uanachain', track: 'pedagogy', trackLabel: 'Pedagogy' }
     ],
     'Math 5': [
