@@ -485,7 +485,8 @@ body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0)); }
 .keynote-speaker {
   display: flex;
   align-items: center;
-  gap: .5rem;
+  flex-wrap: wrap;
+  gap: .25rem .5rem;
   font-size: .82rem;
   opacity: .85;
 }
